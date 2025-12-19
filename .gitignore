@@ -1,0 +1,51 @@
+# Dependências
+**/node_modules/
+
+# Build outputs do Next.js
+**/.next/
+**/out/
+
+# Deploy e cache
+**/.vercel/
+**/.cache/
+
+# Logs
+**/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+**/*.tsbuildinfo
+
+# Arquivos comprimidos
+*.pack.gz
+
+# Outputs específicos
+mnt/user-data/outputs/
+
+# Build específico do painel-web (redundante mas explícito)
+apps/painel-web/.next/
+apps/painel-web/node_modules/
+
+# Arquivos de ambiente local
+**/.env*.local
+**/.env.local
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporários
+*.tmp
+*.temp
+.cache/

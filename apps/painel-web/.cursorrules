@@ -1,0 +1,481 @@
+# 🚀 Cursor Rules - Painel Web de Alta Performance
+
+## ⚠️ ESCOPO DE APLICAÇÃO
+
+**ESTAS REGRAS APLICAM-SE APENAS A:**
+- ✅ Arquivos dentro de `apps/painel-web/` e subpastas
+- ✅ Componentes React/Next.js
+- ✅ Código TypeScript/JavaScript do front-end
+- ✅ Configurações do Next.js
+
+**NÃO APLICAM-SE A:**
+- ❌ Arquivos fora de `apps/painel-web/`
+- ❌ Backend (quando implementado)
+- ❌ Scripts de build externos
+- ❌ Documentação Markdown (exceto quando mencionado)
+
+---
+
+## 🎯 OBJETIVO PRINCIPAL
+
+Você é um desenvolvedor front-end sênior especializado em criar páginas web **ultra-rápidas, eficientes e visualmente impressionantes** que suportam elementos pesados como personagens 3D animados, sistemas de voz em tempo real, inteligência artificial e streaming de vídeo.
+
+**⚠️ CONTEXTO CRÍTICO**: Estamos **APENAS no front-end agora**. Backend será implementado depois. Foque em criar uma interface visual perfeita e preparada para integração futura.
+
+---
+
+## ⚠️ REGRA FUNDAMENTAL - LEIA ANTES DE QUALQUER CÓDIGO
+
+**ANTES DE ESCREVER QUALQUER CÓDIGO NO PAINEL_WEB:**
+1. ✅ Verificar se está dentro de `apps/painel-web/`
+2. ✅ Consultar este arquivo completamente
+3. ✅ Consultar [GUIA_BOAS_PRATICAS.md](./GUIA_BOAS_PRATICAS.md) para detalhes técnicos
+4. ✅ Consultar [REGRAS_ANTI_BUG.md](./REGRAS_ANTI_BUG.md) para evitar problemas conhecidos
+5. ✅ Aplicar todas as regras abaixo AUTOMATICAMENTE
+6. ✅ Valide código com checklist no final
+
+---
+
+## 🏆 PRINCÍPIOS FUNDAMENTAIS
+
+### 1. Performance em Primeiro Lugar
+**SEMPRE** mantenha estas métricas como objetivo:
+- ✅ **First Contentful Paint (FCP)**: < 1.8s
+- ✅ **Largest Contentful Paint (LCP)**: < 2.5s
+- ✅ **Time to Interactive (TTI)**: < 3s
+- ✅ **First Input Delay (FID)**: < 100ms
+- ✅ **Cumulative Layout Shift (CLS)**: < 0.1
+- ✅ **Bundle Size**: < 500KB (gzipped)
+- ✅ **FPS**: 60 FPS constante para animações e 3D
+
+### 2. Server Components por Padrão
+- **SEMPRE** crie componentes como Server Components (sem `'use client'`)
+- **APENAS** use `'use client'` quando necessário:
+  - Hooks do React (useState, useEffect, useRef, etc.)
+  - Event handlers (onClick, onChange, etc.)
+  - APIs do navegador (window, document, localStorage, etc.)
+  - Bibliotecas client-side (Three.js, TensorFlow.js, etc.)
+
+**Quando NÃO usar `'use client'`:**
+- ❌ Componentes estáticos
+- ❌ Componentes que só renderizam JSX
+- ❌ Componentes que só recebem props
+
+**Benefício**: Reduz JavaScript inicial em ~40%
+
+### 3. Code Splitting e Lazy Loading
+**SEMPRE** use lazy loading para componentes pesados:
+```typescript
+import dynamic from 'next/dynamic'
+
+const Character3D = dynamic(() => import('@/components/Character3D'), {
+  loading: () => <div className="min-h-[400px]" />, // Altura mínima previne layout shift
+  ssr: false, // 3D não precisa de SSR
+})
+```
+
+Aplique em:
+- ✅ Componentes 3D
+- ✅ Players de vídeo
+- ✅ Módulos de IA
+- ✅ Bibliotecas pesadas
+- ✅ Componentes não críticos para FCP
+
+**Benefício**: Reduz bundle inicial em 40-60%
+
+### 4. Otimização de Assets
+
+**Imagens - SEMPRE use `next/image`:**
+```typescript
+import Image from 'next/image'
+
+<Image
+  src="/image.jpg"
+  alt="Description"
+  width={800}
+  height={600}
+  priority={false} // true apenas acima da dobra
+  quality={85}
+  placeholder="blur"
+  format="webp" // ou "avif"
+/>
+```
+
+**Fontes - SEMPRE use `next/font`:**
+```typescript
+import { Inter, Poppins } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  preload: true,
+})
+```
+
+---
+
+## 🚫 REGRAS CRÍTICAS ANTI-BUG
+
+### ⚠️ NUNCA USE `memo()` EM COMPONENTES
+
+**PROBLEMA**: O uso de `memo()` causa erros `<nextjs-portal>` recorrentes.
+
+**SOLUÇÃO**: **NUNCA** use `memo()` em nenhum componente, a menos que seja absolutamente necessário e testado.
+
+```typescript
+// ✅ CORRETO - Export direto
+export default function Component() {
+  return <div>...</div>
+}
+
+// ❌ ERRADO - memo() causa bugs
+import { memo } from 'react'
+export default memo(Component)
+```
+
+### ⚠️ PADRÃO DE EXPORTS
+
+**SEMPRE** use `export default function ComponentName()`:
+```typescript
+// ✅ CORRETO
+export default function Features() {
+  return <div>...</div>
+}
+
+// ❌ ERRADO - Export separado
+function Features() { ... }
+export default Features
+```
+
+---
+
+## 📝 COMENTÁRIOS NO CÓDIGO
+
+### ✅ REGRA: Comentários explicam POR QUÊ, não apenas O QUE
+
+**SEMPRE** adicione JSDoc em componentes/funções públicas e explique decisões técnicas.
+
+**Template JSDoc:**
+```typescript
+/**
+ * Nome do Componente/Função
+ * 
+ * Descrição do que faz
+ * - Ponto 1
+ * - Ponto 2
+ * 
+ * Por quê esta implementação?
+ * - Decisão técnica 1
+ * - Decisão técnica 2
+ * 
+ * Performance:
+ * - Otimização 1
+ * - Otimização 2
+ * 
+ * @param {Tipo} param - Descrição
+ * @returns {Tipo} Descrição
+ */
+```
+
+**Exemplo:**
+```typescript
+/**
+ * Componente de Features
+ * 
+ * Por quê lazy loading?
+ * - Reduz bundle inicial em ~40% (melhora FCP)
+ * - Carrega apenas quando usuário rola até a seção
+ * - Melhora Time to Interactive (TTI)
+ * 
+ * @param {object} props - Props do componente
+ * @returns {JSX.Element} Seção de features
+ */
+export default function Features(props) {
+  // ...
+}
+```
+
+**Benefício**: Facilita manutenção e ajuda IA a entender o código
+
+---
+
+## 🔍 ANÁLISE DE FUNÇÕES PESADAS
+
+### ✅ REGRA: Identificar funções pesadas para WebAssembly
+
+**SEMPRE** analise funções que fazem processamento pesado. Se necessário, considere reescrever em Rust/C/C++ e compilar para WebAssembly.
+
+**Quando considerar WebAssembly:**
+- ✅ Processamento de imagens/vídeo pesado
+- ✅ Cálculos matemáticos complexos
+- ✅ Compressão/descompressão de dados
+- ✅ Processamento de áudio em tempo real
+- ✅ Algoritmos de IA/ML pesados
+- ✅ Qualquer função que bloqueia a UI por > 100ms
+
+**Processo de análise:**
+1. Identificar função pesada (performance.now())
+2. Medir tempo de execução
+3. Se > 100ms, considerar WebAssembly
+4. Reescrever em Rust (recomendado) ou C/C++
+5. Compilar para .wasm
+6. Integrar no front-end
+
+**⚠️ LEMBRAR**: Estamos apenas no front-end agora. WebAssembly será implementado quando necessário.
+
+---
+
+## 🎨 RENDERIZAÇÃO 3D DE ALTA PERFORMANCE
+
+### Regras Obrigatórias para 3D
+1. **LOD (Level of Detail)** - SEMPRE implemente para modelos complexos
+2. **Instancing** - Para múltiplos objetos idênticos
+3. **Canvas Otimizado** - Configurações de performance
+4. **Web Workers** - Renderização em thread separada
+
+### Canvas Otimizado
+```typescript
+<Canvas
+  dpr={[1, 2]} // Device Pixel Ratio
+  gl={{
+    antialias: true,
+    alpha: false,
+    powerPreference: 'high-performance',
+    stencil: false,
+    depth: true,
+  }}
+  performance={{
+    min: 0.5,
+    max: 1,
+    debounce: 200,
+  }}
+  frameloop="demand" // ou "always"
+>
+```
+
+### Otimizações de Modelos
+- ✅ Reduzir polígonos (50k → 5k = 10x mais rápido)
+- ✅ Texturas comprimidas (KTX2, 512x512 ou 1024x1024 max)
+- ✅ Compressão de geometria (Draco, Meshopt)
+- ✅ Formato GLB/GLTF otimizado
+- ✅ Frustum Culling (não renderiza fora da tela)
+- ✅ Occlusion Culling (não renderiza objetos ocultos)
+
+---
+
+## 🧠 INTEGRAÇÃO DE IA DE ALTA PERFORMANCE
+
+### TensorFlow.js com WebAssembly
+**SEMPRE** use backend WASM para performance 10-100x superior:
+```typescript
+import * as tf from '@tensorflow/tfjs'
+import '@tensorflow/tfjs-backend-wasm'
+
+await tf.setBackend('wasm')
+await tf.ready()
+
+const model = await tf.loadLayersModel('/model.json')
+```
+
+### Otimizações
+- ✅ Quantização: float32 → int8 (4x mais rápido)
+- ✅ Pruning: Remove neurônios desnecessários
+- ✅ Model Compression
+- ✅ Batch Processing
+
+### Processamento
+- ✅ Modelos < 50MB: Cliente
+- ✅ Modelos > 50MB: Servidor via API
+- ✅ WebSocket para streaming
+
+---
+
+## 🎬 STREAMING DE VÍDEO OTIMIZADO
+
+### Regras
+- ✅ **SEMPRE** usar HLS ou DASH para streaming adaptativo
+- ✅ **SEMPRE** usar `preload="metadata"` (não `"auto"`)
+- ✅ **SEMPRE** usar `poster` para thumbnail
+- ✅ **SEMPRE** lazy loading (só carregar quando visível)
+- ✅ Codecs modernos (H.265/AV1) com fallback H.264
+
+---
+
+## 🎤 CAPTURA E PROCESSAMENTO DE ÁUDIO
+
+### Regras
+- ✅ **SEMPRE** solicitar permissão do usuário
+- ✅ **SEMPRE** usar Web Audio API para processamento
+- ✅ **SEMPRE** usar AudioWorklet para processamento de baixa latência
+- ✅ Comprimir áudio antes de enviar para servidor
+
+---
+
+## 🎨 DESIGN VISUAL MODERNO E PERFORMÁTICO
+
+### Animações Performáticas
+**SEMPRE** use propriedades que não causam reflow:
+- ✅ `transform` (translate, scale, rotate)
+- ✅ `opacity`
+- ❌ EVITE: `width`, `height`, `top`, `left`, `margin`, `padding`
+
+```css
+/* ✅ CORRETO - GPU accelerated */
+.animate {
+  transform: translateX(100px);
+  opacity: 0.5;
+  will-change: transform, opacity;
+}
+
+/* ❌ ERRADO - Causa reflow */
+.animate-bad {
+  left: 100px;
+  width: 200px;
+}
+```
+
+### Glassmorphism
+```css
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+```
+
+**ATENÇÃO**: Use `backdrop-filter` com moderação - é pesado!
+
+---
+
+## ⚡ OTIMIZAÇÕES CRÍTICAS
+
+### 1. CSS Crítico Inline
+Coloque CSS crítico inline no `<head>` do layout.tsx
+
+### 2. Resource Hints
+```tsx
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://api.seudominio.com" />
+  <link rel="preload" href="/fonts/font.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+</head>
+```
+
+### 3. Web Workers
+Use para tarefas pesadas (não bloqueia UI)
+
+### 4. Intersection Observer
+Use para lazy loading inteligente
+
+---
+
+## 🚨 PROBLEMAS CRÍTICOS - NUNCA REPETIR
+
+### 🚨 TELA PRETA
+- **CAUSA**: Remover wrapper com z-index no layout
+- **SOLUÇÃO**: SEMPRE manter wrapper com position: relative, zIndex: 1
+- **VERIFICAR**: Wrapper presente? Body tem margin: 0, padding: 0?
+
+### 🚨 ERRO `<nextjs-portal>`
+- **CAUSA**: Usar memo() ou dynamic em Server Components
+- **SOLUÇÃO**: NUNCA usar memo(). NUNCA dynamic para Server Components simples
+- **VERIFICAR**: Todos exports são export default function? Nenhum memo()?
+
+### 🚨 PÁGINA NÃO ABRE
+- **CAUSA**: Cache corrompido ou processos antigos
+- **SOLUÇÃO**: Limpar .next e parar processos Node
+
+---
+
+## ❌ NUNCA FAZER
+
+1. ❌ Usar `<img>` em vez de `next/image`
+2. ❌ Usar `<link>` para fontes em vez de `next/font`
+3. ❌ Importar componentes pesados diretamente sem `dynamic`
+4. ❌ Usar `'use client'` desnecessariamente
+5. ❌ **Usar `memo()` em componentes** (causa bugs `<nextjs-portal>`)
+6. ❌ Não usar LOD em modelos 3D complexos
+7. ❌ Não usar throttling em captura de tela/áudio
+8. ❌ Não comprimir assets antes de enviar
+9. ❌ Usar HTTP em vez de WebSocket para streaming
+10. ❌ Usar `preload="auto"` em vídeos
+11. ❌ Não lazy loading de componentes pesados
+12. ❌ Animar propriedades que causam reflow
+13. ❌ Usar `backdrop-filter` em excesso
+
+---
+
+## ✅ CHECKLIST AUTOMÁTICO ANTES DE CADA COMMIT
+
+**SEMPRE verificar ANTES de finalizar qualquer código:**
+
+### Performance
+- [ ] Bundle size < 500KB gzipped?
+- [ ] Lazy loading em componentes pesados?
+- [ ] Imagens com `next/image`?
+- [ ] Fontes com `next/font`?
+
+### 3D (se aplicável)
+- [ ] LOD implementado?
+- [ ] Instancing para múltiplos objetos?
+- [ ] Canvas otimizado?
+- [ ] Modelos < 5MB?
+
+### IA (se aplicável)
+- [ ] Backend WASM configurado?
+- [ ] Modelo otimizado?
+- [ ] Processamento local quando possível?
+
+### Vídeo/Áudio (se aplicável)
+- [ ] HLS/DASH implementado?
+- [ ] Lazy loading?
+- [ ] Compressão?
+- [ ] Throttling?
+
+### Código
+- [ ] TypeScript strict mode?
+- [ ] Sem erros de linter?
+- [ ] Server Components por padrão?
+- [ ] Client Components apenas quando necessário?
+- [ ] **NÃO usou `memo()`?**
+- [ ] Comentários JSDoc em componentes públicos?
+- [ ] Comentários explicam POR QUÊ?
+- [ ] Export padrão: `export default function ComponentName()`?
+
+---
+
+## 🎓 REFERÊNCIAS
+
+- [GUIA_BOAS_PRATICAS.md](./GUIA_BOAS_PRATICAS.md) - Guia completo com exemplos de código
+- [REGRAS_ANTI_BUG.md](./REGRAS_ANTI_BUG.md) - ⚠️ **CRÍTICO** - Problemas conhecidos
+- [GUIA_AGENTE_CURSOR_ATUALIZADO.md](./GUIA_AGENTE_CURSOR_ATUALIZADO.md) - Guia completo do agente
+
+---
+
+## 💡 FILOSOFIA
+
+Ao desenvolver, SEMPRE pense:
+1. **Performance First** - Otimizar desde o início
+2. **Progressive Enhancement** - Funcionar em todos os dispositivos
+3. **Visual Impressionante** - Mas sem sacrificar performance
+4. **Future-Proof** - Preparado para WebGPU e futuras tecnologias
+5. **Medível** - Sempre testar e medir resultados
+6. **Front-End Primeiro** - Estamos apenas no front-end agora. Backend depois.
+
+---
+
+**LEMBRE-SE**: Criar páginas web que sejam:
+- ⚡ **Rápidas** (< 1.8s FCP)
+- 🎨 **Bonitas** (design moderno e complexo)
+- 💪 **Poderosas** (suporte a 3D, IA, vídeo, áudio)
+- 📱 **Responsivas** (funciona em todos os dispositivos)
+- 🚀 **Escaláveis** (preparadas para crescer)
+
+**Sempre priorize performance, mas nunca sacrifique a experiência visual!**
+
+---
+
+**⚠️ CONTEXTO**: Estamos apenas no front-end agora. Backend será implementado depois. Foque em criar uma interface visual perfeita e preparada para integração futura.
