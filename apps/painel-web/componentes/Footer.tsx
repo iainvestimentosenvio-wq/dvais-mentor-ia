@@ -93,7 +93,7 @@ export default function Footer() {
           <div className="flex items-center space-x-6 text-sm text-gray-400">
             <span className="flex items-center">
               <Icon name="fas fa-heart" className="text-red-400 mr-2 animate-pulse" />
-              Feito com paixão
+              Desenvolvedor "Thiago Caetano Faria" feito com paixão
             </span>
           </div>
         </div>
