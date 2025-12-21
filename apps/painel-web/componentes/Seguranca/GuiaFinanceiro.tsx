@@ -11,16 +11,10 @@ import Icon from '@/componentes/Icon'
 export default function GuiaFinanceiro() {
   const exemplos = [
     {
-      title: 'Mês com gasto alto + prejuízo recente',
+      title: 'Relatório Mensal de Despesas + Análise de Capital',
       description:
-        'Ex.: despesas de saúde aumentaram e houve prejuízo recente. Sugestão: reduzir exposição, priorizar segurança/caixa e revisar limites antes de novas entradas.',
-      icon: 'fas fa-shield-alt',
-    },
-    {
-      title: 'Herança + morar de aluguel',
-      description:
-        'Ex.: entrada de capital relevante e moradia de aluguel. Orientação: considerar objetivos (reserva, moradia, estabilidade) antes de concentrar tudo em cripto.',
-      icon: 'fas fa-lightbulb',
+        'Organizamos suas finanças e geramos um relatório mensal para você investir com mais segurança. Você atualiza do jeito que preferir: site/app ou WhatsApp — por áudio, mensagem, foto legível da nota, ou PDF. Com isso, analisamos também entradas de capital e sua realidade financeira atual para orientar com precisão limites, riscos e próximos passos, evitando decisões fora do seu momento.',
+      icon: 'fas fa-chart-line',
     },
   ]
 
@@ -33,18 +27,23 @@ export default function GuiaFinanceiro() {
             Add-on opcional
           </div>
           <h2 id="guia-financeiro" className="text-3xl lg:text-5xl font-extrabold mb-4">
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
-              Guia Financeiro (Segurança do Orçamento)
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent block">
+              Guia Financeiro
+            </span>
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent block text-2xl lg:text-4xl mt-2">
+              (Segurança do Orçamento)
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
-            Um módulo opcional que ajuda você a investir com mais segurança conforme sua realidade atual
-            (receitas, despesas, lucros, prejuízos e objetivos). Ele pode gerar um relatório mensal e sugerir limites de
-            exposição e risco com base no que você informar.
+            <span className="text-white font-semibold">Seu mercado muda. Sua vida também.</span>
+            <br />
+            Investir com <span className="text-cyan-400 font-semibold">segurança</span> exige decisões alinhadas com a sua <span className="text-cyan-400 font-semibold">realidade</span>: contas do mês, imprevistos, <span className="text-cyan-400 font-semibold">metas</span> e <span className="text-cyan-400 font-semibold">prazos</span>.
+            <br />
+            O <span className="text-white font-semibold">Guia Financeiro</span> ajuda você a definir quanto investir com <span className="text-cyan-400 font-semibold">tranquilidade</span>, quando <span className="text-cyan-400 font-semibold">reduzir risco</span> e quando <span className="text-cyan-400 font-semibold">priorizar reservas</span> — para que o investimento não comprometa sua <span className="text-cyan-400 font-semibold">estabilidade</span>.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
           {exemplos.map((e) => (
             <div
               key={e.title}
@@ -70,13 +69,15 @@ export default function GuiaFinanceiro() {
           <div className="glass-intense border border-white/10 rounded-2xl p-6 shadow-xl">
             <div className="flex items-start gap-3">
               <Icon name="fas fa-shield-alt" className="text-cyan-300 mt-1" aria-hidden="true" />
-              <div className="space-y-2">
-                <p className="text-sm text-gray-300">
-                  <span className="text-white font-semibold">Transparência:</span> análise automatizada e educacional baseada em dados fornecidos pelo usuário.
-                  A decisão final é sempre do usuário. Não há promessas de retorno. Não é consultoria financeira regulada.
+              <div className="space-y-3">
+                <p className="text-base text-gray-300 leading-relaxed">
+                  Deixe de lado <span className="text-white font-semibold">promessas fáceis</span>. Aqui o foco é <span className="text-cyan-400 font-semibold">método, dados e tecnologia de alta performance</span> para investimentos e gerenciamento de capital.
                 </p>
-                <p className="text-xs text-gray-400">
-                  Nesta página pública, nada é coletado/armazenado: é apenas uma apresentação do módulo (em breve).
+                <p className="text-base text-gray-300 leading-relaxed">
+                  Seu dinheiro é <span className="text-white font-semibold">coisa séria</span> — por isso o <span className="text-cyan-400 font-semibold">DVAi$</span> trabalha com <span className="text-cyan-400 font-semibold">análise contínua</span> e <span className="text-cyan-400 font-semibold">orientações personalizadas</span> para a sua realidade.
+                </p>
+                <p className="text-base text-gray-300 leading-relaxed">
+                  Nossa missão é ser seu <span className="text-white font-semibold">mentor no dia a dia</span>: organizar suas finanças, cortar gastos desnecessários e ajudar seu capital a evoluir com mais <span className="text-cyan-400 font-semibold">segurança, técnica e consistência</span>.
                 </p>
               </div>
             </div>

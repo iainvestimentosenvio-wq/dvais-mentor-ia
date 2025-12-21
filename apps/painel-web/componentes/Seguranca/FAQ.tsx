@@ -21,7 +21,7 @@ export default function FAQ() {
     },
     {
       q: 'O Guia Financeiro é opcional?',
-      a: 'Sim. É um add-on opcional para ajudar a alinhar exposição e risco à sua realidade (receitas, despesas, objetivos).',
+      a: 'Sim, é um add-on opcional que ajuda a alinhar exposição e risco à sua realidade (receitas, despesas, objetivos). Importante: para que os alertas de segurança funcionem com precisão, recomendamos ativar este pacote, pois precisamos conhecer sua realidade econômica para sugerir quando avançar ou quando pausar investimentos, garantindo decisões mais seguras e alinhadas ao seu momento financeiro.',
     },
     {
       q: 'Quais dados o Guia Financeiro usa?',
@@ -42,7 +42,7 @@ export default function FAQ() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <h2 id="faq" className="text-3xl lg:text-5xl font-extrabold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">FAQ</span>
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">Perguntas Frequentes</span>
           </h2>
           <p className="text-xl text-gray-400">
             Respostas curtas e transparentes para as dúvidas mais comuns.

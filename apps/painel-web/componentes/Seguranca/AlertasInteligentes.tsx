@@ -33,9 +33,18 @@ export default function AlertasInteligentes() {
               Alertas Inteligentes
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-6">
             Alertas são uma camada de segurança: reduzem erro operacional e ajudam a manter consistência — sem prometer resultados.
           </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="glass-intense border border-cyan-400/20 rounded-xl p-6 bg-gradient-to-br from-cyan-500/5 to-blue-500/5">
+              <p className="text-base text-gray-300 leading-relaxed text-center">
+                <Icon name="fas fa-info-circle" className="text-cyan-400 mr-2 inline" aria-hidden="true" />
+                <span className="text-white font-semibold">Para alertas mais precisos e personalizados</span>, recomendamos ativar o{' '}
+                <span className="text-cyan-400 font-semibold">Guia Financeiro</span>, que permite conhecer sua realidade econômica e sugerir quando avançar ou pausar investimentos, garantindo decisões mais seguras e alinhadas ao seu momento financeiro.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

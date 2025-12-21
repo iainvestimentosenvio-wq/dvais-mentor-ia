@@ -19,6 +19,14 @@ export default function Transparencia() {
       description:
         'Não guardamos fundos, não movimentamos ativos e não pedimos senha da corretora. A decisão e a execução são suas.',
     },
+    {
+      icon: 'fas fa-hand-holding-heart',
+      title: 'O que fazemos',
+      description:
+        'Oferecemos orientação educacional, análise personalizada baseada na sua realidade financeira, alertas inteligentes e ferramentas para você investir com mais segurança, conhecimento e disciplina. Seu mentor no dia a dia.',
+      gradient: 'from-cyan-500/20 to-blue-500/20',
+      borderColor: 'border-cyan-400/40',
+    },
   ]
 
   return (
@@ -35,13 +43,13 @@ export default function Transparencia() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {itens.map((i) => (
             <div
               key={i.title}
-              className="group relative glass-intense border border-white/10 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-500/20 card-glow-hover"
+              className={`group relative glass-intense border ${i.borderColor || 'border-white/10'} rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-500/20 card-glow-hover`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`absolute inset-0 bg-gradient-to-br ${i.gradient || 'from-blue-500/10 to-cyan-500/10'} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
               <div className="relative z-10 space-y-5">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-all duration-300">

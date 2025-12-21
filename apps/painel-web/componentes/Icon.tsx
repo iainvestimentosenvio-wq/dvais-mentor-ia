@@ -28,6 +28,14 @@ import {
   faBullseye,
   faArrowRight,
   faClock,
+  faWallet,
+  faExclamationTriangle,
+  faHandPointer,
+  faBell,
+  faArrowDown,
+  faSyncAlt,
+  faInfoCircle,
+  faCalendarCheck,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   // Brand icons
@@ -83,6 +91,14 @@ const iconMap: Record<string, IconDefinition> = {
   'fa-bullseye': faBullseye,
   'fa-arrow-right': faArrowRight,
   'fa-clock': faClock,
+  'fa-wallet': faWallet,
+  'fa-exclamation-triangle': faExclamationTriangle,
+  'fa-hand-pointer': faHandPointer,
+  'fa-bell': faBell,
+  'fa-arrow-down': faArrowDown,
+  'fa-sync-alt': faSyncAlt,
+  'fa-info-circle': faInfoCircle,
+  'fa-calendar-check': faCalendarCheck,
   // Brand icons
   'fa-google': faGoogle,
   'fa-facebook': faFacebook,

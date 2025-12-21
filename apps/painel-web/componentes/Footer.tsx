@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><a href="#features" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Funcionalidades</a></li>
               <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Preços</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">FAQ</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Perguntas Frequentes</a></li>
             </ul>
           </div>
 

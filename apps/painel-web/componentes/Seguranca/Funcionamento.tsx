@@ -8,9 +8,24 @@ import Icon from '@/componentes/Icon'
  */
 export default function Funcionamento() {
   const passos = [
-    'Você define suas preferências e objetivos (com consentimento).',
-    'O sistema sugere checklists e alertas para reduzir risco operacional.',
-    'No Guia Financeiro (opcional), você informa dados e recebe relatório mensal e limites sugeridos.',
+    {
+      numero: '01',
+      titulo: 'Informe sua realidade financeira',
+      descricao: 'Você informa receitas, despesas, objetivos e situação atual (via site/app ou WhatsApp). O sistema analisa e cria seu perfil de risco personalizado.',
+      icon: 'fas fa-user-check',
+    },
+    {
+      numero: '02',
+      titulo: 'Receba alertas inteligentes',
+      descricao: 'Baseado na sua situação, você recebe alertas contextuais. Exemplo: "Sua exposição está acima do recomendado para este mês" ou "Momento de priorizar reservas".',
+      icon: 'fas fa-bell',
+    },
+    {
+      numero: '03',
+      titulo: 'Acesse relatório mensal e sugestões',
+      descricao: 'No Guia Financeiro (opcional), você recebe relatório mensal com análise da sua situação, sugestões de limites e próximos passos — tudo baseado na sua realidade, não em promessas genéricas.',
+      icon: 'fas fa-chart-pie',
+    },
   ]
 
   return (
@@ -57,15 +72,35 @@ export default function Funcionamento() {
 
           {/* Passos / checklist */}
           <div className="glass-intense border border-blue-400/15 rounded-2xl p-8 shadow-2xl">
-            <h3 className="text-2xl font-bold text-white mb-6">Como a proteção se encaixa no dia a dia</h3>
-            <ul className="space-y-4">
-              {passos.map((p) => (
-                <li key={p} className="flex items-start gap-3">
-                  <Icon name="fas fa-check-circle" className="text-cyan-400 mt-1 flex-shrink-0" aria-hidden="true" />
-                  <span className="text-gray-300 leading-relaxed">{p}</span>
-                </li>
+            <h3 className="text-2xl font-bold text-white mb-8">Como a proteção se encaixa no dia a dia</h3>
+            <div className="space-y-6">
+              {passos.map((passo, index) => (
+                <div key={index} className="group relative">
+                  <div className="flex items-start gap-4">
+                    {/* Número e ícone */}
+                    <div className="flex-shrink-0">
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-all duration-300">
+                        <span className="text-white font-bold text-lg">{passo.numero}</span>
+                      </div>
+                    </div>
+                    
+                    {/* Conteúdo */}
+                    <div className="flex-1 pt-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Icon name={passo.icon} className="text-cyan-400 text-lg" aria-hidden="true" />
+                        <h4 className="text-lg font-bold text-white">{passo.titulo}</h4>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">{passo.descricao}</p>
+                    </div>
+                  </div>
+                  
+                  {/* Linha conectora (exceto no último) */}
+                  {index < passos.length - 1 && (
+                    <div className="ml-7 mt-4 mb-2 w-0.5 h-6 bg-gradient-to-b from-cyan-400/50 to-blue-400/50"></div>
+                  )}
+                </div>
               ))}
-            </ul>
+            </div>
 
             <div className="mt-8 p-5 rounded-xl border border-white/10 bg-blue-500/5">
               <div className="flex items-start gap-3">
@@ -88,10 +123,10 @@ export default function Funcionamento() {
               <a
                 href="#guia-financeiro"
                 className="group px-7 py-4 border-2 border-cyan-400/40 text-cyan-200 rounded-xl font-semibold hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center gap-3 backdrop-blur-sm"
-                aria-label="Ir para Guia Financeiro"
+                aria-label="Ver demo do Guia Financeiro"
               >
                 <Icon name="fas fa-arrow-right" className="text-cyan-300" aria-hidden="true" />
-                Ver Guia Financeiro
+                Ver Demo - Guia Financeiro
               </a>
             </div>
           </div>

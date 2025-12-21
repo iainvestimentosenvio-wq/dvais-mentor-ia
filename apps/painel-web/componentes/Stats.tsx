@@ -42,7 +42,7 @@ export default function Stats() {
       gradient: 'from-blue-400 to-cyan-400'
     },
     {
-      number: 'Múltiplas',
+      number: 'Integrado',
       label: 'Corretoras',
       icon: 'fas fa-building',
       gradient: 'from-cyan-400 to-blue-500'
@@ -81,7 +81,7 @@ export default function Stats() {
                 </div>
                 
                 {/* Number */}
-                <div className={`text-4xl lg:text-5xl font-extrabold mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                <div className={`text-3xl lg:text-4xl font-extrabold mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent leading-tight`}>
                   {stat.number}
                 </div>
                 

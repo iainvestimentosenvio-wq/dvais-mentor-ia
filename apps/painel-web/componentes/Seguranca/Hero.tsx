@@ -54,7 +54,8 @@ export default function SegurancaHero() {
             <p className="text-lg text-gray-300 leading-relaxed text-center">
               O <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">DVAi$ - Mentor IA</span> foi desenvolvido com foco em{' '}
               <span className="text-cyan-400 font-semibold">segurança, transparência e educação</span>. 
-              Não somos corretora, não fazemos custódia e não prometemos lucros. Nossa missão é orientar você com base em boas práticas e análise educacional.
+              Não fazemos custódia e não prometemos lucro, mas prometemos te orientar a investir com técnicas avançadas usadas pelos melhores. Nossa missão é orientar você com base em boas práticas e análise educacional.{' '}
+              <span className="text-cyan-400 font-semibold">Seu Lucro é o nosso sucesso.</span>
             </p>
           </div>
 

@@ -4,6 +4,7 @@ import CardsProtecao from '@/componentes/Seguranca/CardsProtecao'
 import AlertasInteligentes from '@/componentes/Seguranca/AlertasInteligentes'
 import GuiaFinanceiro from '@/componentes/Seguranca/GuiaFinanceiro'
 import Transparencia from '@/componentes/Seguranca/Transparencia'
+import Integracao from '@/componentes/Seguranca/Integracao'
 import EducacaoSeguranca from '@/componentes/Seguranca/EducacaoSeguranca'
 import FAQ from '@/componentes/Seguranca/FAQ'
 import Funcionamento from '@/componentes/Seguranca/Funcionamento'
@@ -79,6 +80,9 @@ export default function SegurancaPage() {
         
         {/* Transparencia: Lazy loaded (abaixo da dobra) */}
         <Transparencia />
+        
+        {/* Integracao: Lazy loaded (abaixo da dobra) */}
+        <Integracao />
         
         {/* EducacaoSeguranca: Lazy loaded (abaixo da dobra) */}
         <EducacaoSeguranca />

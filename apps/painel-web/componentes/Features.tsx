@@ -47,7 +47,8 @@ export default function Features() {
       description: 'IA que evolui com suas preferências e o comportamento do mercado.',
       gradient: 'from-blue-500/20 to-cyan-500/10',
       iconGradient: 'from-blue-400 to-cyan-400',
-      borderColor: 'border-blue-400/30'
+      borderColor: 'border-blue-400/30',
+      link: '/aprendizado-continuo',
     }
   ]
 
