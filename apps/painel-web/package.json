@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^10.0.0",
     "react-phone-number-input": "^3.4.13",
+    "web-vitals": "^5.1.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {
