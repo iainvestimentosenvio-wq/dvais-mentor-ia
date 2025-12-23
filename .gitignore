@@ -49,3 +49,7 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+
+# Service Worker gerado pelo PWA (next-pwa)
+**/sw.js
+apps/painel-web/public/sw.js
