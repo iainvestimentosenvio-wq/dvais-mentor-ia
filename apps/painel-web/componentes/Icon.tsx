@@ -36,6 +36,9 @@ import {
   faSyncAlt,
   faInfoCircle,
   faCalendarCheck,
+  faHandHoldingHeart,
+  faUserCheck,
+  faChartPie,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   // Brand icons
@@ -99,6 +102,9 @@ const iconMap: Record<string, IconDefinition> = {
   'fa-sync-alt': faSyncAlt,
   'fa-info-circle': faInfoCircle,
   'fa-calendar-check': faCalendarCheck,
+  'fa-hand-holding-heart': faHandHoldingHeart,
+  'fa-user-check': faUserCheck,
+  'fa-chart-pie': faChartPie,
   // Brand icons
   'fa-google': faGoogle,
   'fa-facebook': faFacebook,

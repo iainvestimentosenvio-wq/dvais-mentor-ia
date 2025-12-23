@@ -109,11 +109,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="DVAi$ - Mentor IA" />
         {/* Font Awesome agora é self-hosted (otimizado) */}
-        {/* Resource Hints para melhorar performance */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        {/* Resource Hints para melhorar performance - preconnect deve vir antes do dns-prefetch */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
       </head>
       <body className="chameleon-bg">
         {/* Sentinel para IntersectionObserver (substitui scroll listener) */}
@@ -136,7 +136,7 @@ export default function RootLayout({
         {/* Logo fixo - não se move durante scroll */}
         <FixedLogo />
         
-        <div style={{ position: 'relative', zIndex: 1 }}>
+        <div className="content-wrapper">
           {children}
         </div>
         
