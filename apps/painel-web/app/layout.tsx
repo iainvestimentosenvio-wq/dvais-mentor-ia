@@ -136,7 +136,7 @@ export default function RootLayout({
         {/* Logo fixo - não se move durante scroll */}
         <FixedLogo />
         
-        <div style={{ position: 'relative', zIndex: 1 }}>
+        <div className="content-wrapper">
           {children}
         </div>
         
