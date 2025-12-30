@@ -12,7 +12,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family:
+    var(--font-inter),
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,8 +86,7 @@ main {
 }
 
 /* Z-index wrapper crítico */
-[style*="position: relative"][style*="zIndex: 1"] {
+[style*='position: relative'][style*='zIndex: 1'] {
   position: relative !important;
   z-index: 1 !important;
 }
-

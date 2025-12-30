@@ -37,12 +37,13 @@ export default function EducacaoSeguranca() {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Segurança não é só tecnologia: é processo, disciplina e entendimento do que você está fazendo.
+            Segurança não é só tecnologia: é processo, disciplina e entendimento do que você está
+            fazendo.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {pontos.map((p) => (
+          {pontos.map(p => (
             <div
               key={p.title}
               className="group relative glass-intense border border-blue-400/20 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-400/40 hover:shadow-blue-500/20 card-glow-hover"
@@ -65,7 +66,8 @@ export default function EducacaoSeguranca() {
             <div className="flex items-start gap-3">
               <Icon name="fas fa-shield-alt" className="text-cyan-300 mt-1" aria-hidden="true" />
               <p className="text-sm text-gray-300">
-                Nosso foco é reduzir risco operacional e aumentar clareza. Você mantém controle total sobre suas decisões e execução.
+                Nosso foco é reduzir risco operacional e aumentar clareza. Você mantém controle
+                total sobre suas decisões e execução.
               </p>
             </div>
           </div>
@@ -74,6 +76,3 @@ export default function EducacaoSeguranca() {
     </section>
   )
 }
-
-
-

@@ -1,6 +1,6 @@
 /**
  * TensorFlow.js Configuration
- * 
+ *
  * Configuração centralizada para processamento de IA com WebAssembly + SIMD
  * Performance: 10-200x mais rápido que JavaScript puro
  */
@@ -25,26 +25,26 @@ export interface AIBackendStatus {
 export const AI_CONFIG = {
   // Backend preferencial - WASM ativado na Etapa 2!
   preferredBackend: 'wasm',
-  
+
   // Feature flags
   features: {
     enableWasm: true, // ✅ Ativado na Etapa 2
     enableSimd: true, // ✅ Ativado na Etapa 3!
     enableWorker: false, // Será ativado na Etapa 6
   },
-  
+
   // Caminhos para arquivos WASM (servidos estaticamente)
   wasmPaths: {
     'tfjs-backend-wasm.wasm': '/tfjs-wasm/tfjs-backend-wasm.wasm',
     'tfjs-backend-wasm-simd.wasm': '/tfjs-wasm/tfjs-backend-wasm-simd.wasm',
     'tfjs-backend-wasm-threaded-simd.wasm': '/tfjs-wasm/tfjs-backend-wasm-threaded-simd.wasm',
   },
-  
+
   // Configurações de performance
   performance: {
     // Número de threads para processamento paralelo
-    numThreads: typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency || 4) : 4,
-    
+    numThreads: typeof navigator !== 'undefined' ? navigator.hardwareConcurrency || 4 : 4,
+
     // Cache de modelos
     cacheModels: true,
   },
@@ -91,10 +91,10 @@ async function checkSimdSupport(): Promise<boolean> {
     // Teste através do WebAssembly.validate com um módulo SIMD
     // Módulo WASM mínimo com instrução SIMD v128
     const simdTest = new Uint8Array([
-      0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 96, 0, 1, 123, 3, 2, 1, 0, 10, 10,
-      1, 8, 0, 65, 0, 253, 15, 253, 98, 11
+      0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 96, 0, 1, 123, 3, 2, 1, 0, 10, 10, 1, 8, 0, 65, 0, 253,
+      15, 253, 98, 11,
     ])
-    
+
     return WebAssembly.validate(simdTest)
   } catch {
     return false
@@ -103,7 +103,7 @@ async function checkSimdSupport(): Promise<boolean> {
 
 /**
  * Inicializa o backend de IA
- * 
+ *
  * Etapa 3: Backend WASM + SIMD configurado!
  * Performance: 20-400x mais rápido que CPU
  */
@@ -120,7 +120,7 @@ export async function initializeAIBackend(): Promise<AIBackendStatus> {
 
     // Verificar suporte a WASM
     const wasmSupported = checkWasmSupport()
-    
+
     if (!wasmSupported) {
       console.warn('⚠️ WebAssembly não suportado, usando CPU backend')
       backendStatus = {
@@ -141,7 +141,7 @@ export async function initializeAIBackend(): Promise<AIBackendStatus> {
 
     // Importar e registrar backend WASM dinamicamente
     await import('@tensorflow/tfjs-backend-wasm')
-    
+
     // Registrar backend WASM (com detecção automática de SIMD)
     await tf.setBackend('wasm')
     await tf.ready()
@@ -165,14 +165,14 @@ export async function initializeAIBackend(): Promise<AIBackendStatus> {
       console.log(`   Backend ativo: ${tf.getBackend()}`)
       console.log(`   Threads disponíveis: ${AI_CONFIG.performance.numThreads}`)
     }
-    
+
     return backendStatus
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido'
-    
+
     // Fallback para CPU em caso de erro
     console.warn('⚠️ Erro ao inicializar WASM, usando CPU backend:', errorMessage)
-    
+
     try {
       await tf.setBackend('cpu')
       backendStatus = {
@@ -191,7 +191,7 @@ export async function initializeAIBackend(): Promise<AIBackendStatus> {
         error: errorMessage,
       }
     }
-    
+
     return backendStatus
   }
 }
@@ -219,4 +219,3 @@ export function cleanupAI(): void {
     console.log('🧹 Recursos de IA limpos')
   }
 }
-

@@ -16,7 +16,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/aprendizado-continuo' },
   openGraph: {
     title: 'Aprendizado Contínuo | DVAi$ - Mentor IA',
-    description: 'IA que aprende com você e com o mercado — para orientar decisões mais conscientes.',
+    description:
+      'IA que aprende com você e com o mercado — para orientar decisões mais conscientes.',
     type: 'website',
     url: '/aprendizado-continuo',
   },
@@ -44,17 +45,20 @@ export default function AprendizadoContinuoPage() {
     {
       icon: 'fas fa-graduation-cap',
       title: 'Glossário e explicações por contexto',
-      description: 'Cada botão e funcionalidade traz explicações simples, diretas e aplicáveis no momento da ação.',
+      description:
+        'Cada botão e funcionalidade traz explicações simples, diretas e aplicáveis no momento da ação.',
     },
     {
       icon: 'fas fa-play',
       title: 'Simuladores de plataforma',
-      description: 'Ensinamos você a usar simuladores de plataforma para aprender fazendo de forma responsável, com cenários reais e práticos que treinam disciplina e leitura de contexto.',
+      description:
+        'Ensinamos você a usar simuladores de plataforma para aprender fazendo de forma responsável, com cenários reais e práticos que treinam disciplina e leitura de contexto.',
     },
     {
       icon: 'fas fa-bullseye',
       title: 'Rotina guiada (progressiva)',
-      description: 'Do básico ao avançado, com passos curtos e consistentes para criar hábitos e reduzir erro operacional.',
+      description:
+        'Do básico ao avançado, com passos curtos e consistentes para criar hábitos e reduzir erro operacional.',
     },
   ]
 
@@ -62,17 +66,20 @@ export default function AprendizadoContinuoPage() {
     {
       icon: 'fas fa-user-plus',
       title: 'Preferências e objetivos',
-      description: 'Prazo, foco e tolerância a risco orientam sugestões e checklists de forma personalizada.',
+      description:
+        'Prazo, foco e tolerância a risco orientam sugestões e checklists de forma personalizada.',
     },
     {
       icon: 'fas fa-lock',
       title: 'Rotina financeira (opcional)',
-      description: 'Você escolhe o que informar. Sem credenciais de corretora e sem custódia (não guardamos seus ativos) — apenas contexto para orientar melhor.',
+      description:
+        'Você escolhe o que informar. Sem credenciais de corretora e sem custódia (não guardamos seus ativos) — apenas contexto para orientar melhor.',
     },
     {
       icon: 'fas fa-clock',
       title: 'Alertas comportamentais',
-      description: 'Linguagem cuidadosa para sugerir pausas e reduzir exposição quando você sinaliza pressa, estresse ou incerteza.',
+      description:
+        'Linguagem cuidadosa para sugerir pausas e reduzir exposição quando você sinaliza pressa, estresse ou incerteza.',
     },
   ]
 
@@ -80,17 +87,20 @@ export default function AprendizadoContinuoPage() {
     {
       icon: 'fas fa-bolt',
       title: 'Adaptação a regimes e volatilidade',
-      description: 'O sistema monitora constantemente o mercado e ajusta a orientação conforme mudanças de ritmo, liquidez e volatilidade, garantindo que você receba recomendações alinhadas ao contexto atual.',
+      description:
+        'O sistema monitora constantemente o mercado e ajusta a orientação conforme mudanças de ritmo, liquidez e volatilidade, garantindo que você receba recomendações alinhadas ao contexto atual.',
     },
     {
       icon: 'fas fa-chart-bar',
       title: 'Adaptação à sua situação financeira atual',
-      description: 'Despesas ou receitas imprevistas? A plataforma ajusta as orientações em tempo real para guiá-lo conforme sua realidade financeira do momento.',
+      description:
+        'Despesas ou receitas imprevistas? A plataforma ajusta as orientações em tempo real para guiá-lo conforme sua realidade financeira do momento.',
     },
     {
       icon: 'fas fa-sync-alt',
       title: 'Recalibração contínua',
-      description: 'Modelos e regras são atualizados continuamente para manter coerência com o cenário atual. A plataforma evolui junto com o mercado, sempre priorizando orientações precisas e contextualizadas.',
+      description:
+        'Modelos e regras são atualizados continuamente para manter coerência com o cenário atual. A plataforma evolui junto com o mercado, sempre priorizando orientações precisas e contextualizadas.',
     },
   ]
 
@@ -111,11 +121,15 @@ export default function AprendizadoContinuoPage() {
     <>
       <main className="min-h-screen" style={{ paddingTop: '140px', paddingBottom: '120px' }}>
         {/* HERO */}
-        <section className="py-20 px-4 lg:px-8">
+        <section id="aprendizado-hero" className="py-20 px-4 lg:px-8">
           <div className="max-w-7xl mx-auto text-center space-y-8">
             <div className="flex justify-center mb-6">
               <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/30">
-                <Icon name="fas fa-graduation-cap" className="text-white text-4xl" aria-hidden="true" />
+                <Icon
+                  name="fas fa-graduation-cap"
+                  className="text-white text-4xl"
+                  aria-hidden="true"
+                />
               </div>
             </div>
             <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight">
@@ -143,7 +157,7 @@ export default function AprendizadoContinuoPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {voceAprende.map((c) => (
+              {voceAprende.map(c => (
                 <InfoCard key={c.title} {...c} />
               ))}
             </div>
@@ -164,7 +178,7 @@ export default function AprendizadoContinuoPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {realidade.map((c) => (
+              {realidade.map(c => (
                 <InfoCard key={c.title} {...c} />
               ))}
             </div>
@@ -185,7 +199,7 @@ export default function AprendizadoContinuoPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {mercado.map((c) => (
+              {mercado.map(c => (
                 <InfoCard key={c.title} {...c} />
               ))}
             </div>
@@ -213,9 +227,13 @@ export default function AprendizadoContinuoPage() {
                   'Não somos corretora.',
                   'Não fazemos custódia (não guardamos seu dinheiro).',
                   'Sem promessas de retorno: orientação educacional e automatizada.',
-                ].map((t) => (
+                ].map(t => (
                   <li key={t} className="flex items-start gap-3">
-                    <Icon name="fas fa-check" className="text-cyan-400 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <Icon
+                      name="fas fa-check"
+                      className="text-cyan-400 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <span className="text-gray-300">{t}</span>
                   </li>
                 ))}
@@ -223,7 +241,7 @@ export default function AprendizadoContinuoPage() {
             </div>
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {exemplos.map((e) => (
+              {exemplos.map(e => (
                 <div
                   key={e.title}
                   className="group relative glass-intense border border-cyan-400/20 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-cyan-400/40 hover:shadow-cyan-500/20 card-glow-hover"
@@ -245,7 +263,11 @@ export default function AprendizadoContinuoPage() {
         </section>
 
         {/* Funcionamento */}
-        <section id="funcionamento" className="py-20 px-4 lg:px-8 scroll-mt-24" aria-labelledby="funcionamento-title">
+        <section
+          id="funcionamento"
+          className="py-20 px-4 lg:px-8 scroll-mt-24"
+          aria-labelledby="funcionamento-title"
+        >
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 id="funcionamento-title" className="text-3xl lg:text-5xl font-extrabold mb-4">
@@ -267,17 +289,21 @@ export default function AprendizadoContinuoPage() {
                       <Icon name="fas fa-play" className="text-blue-300" aria-hidden="true" />
                       Vídeo (em breve)
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3">Demonstração do aprendizado</h3>
+                    <h3 className="text-2xl font-bold text-white mb-3">
+                      Demonstração do aprendizado
+                    </h3>
                     <p className="text-gray-300 leading-relaxed">
-                      Em breve, vamos incluir um vídeo nativo e leve. Nada de iframes e nada de carregamento pesado
-                      — mantendo performance máxima.
+                      Em breve, vamos incluir um vídeo nativo e leve. Nada de iframes e nada de
+                      carregamento pesado — mantendo performance máxima.
                     </p>
                   </div>
                   <div className="mt-8 flex items-center gap-3">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/30">
                       <Icon name="fas fa-play" className="text-white text-xl" aria-hidden="true" />
                     </div>
-                    <p className="text-sm text-gray-400">Placeholder pronto para inserir mídia depois, sem impactar LCP agora.</p>
+                    <p className="text-sm text-gray-400">
+                      Placeholder pronto para inserir mídia depois, sem impactar LCP agora.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -289,18 +315,27 @@ export default function AprendizadoContinuoPage() {
                     'Clareza: explicações no momento da decisão.',
                     'Disciplina: checklists e alertas para reduzir impulso.',
                     'Personalização: orientações alinhadas ao seu contexto.',
-                  ].map((t) => (
+                  ].map(t => (
                     <li key={t} className="flex items-start gap-3">
-                      <Icon name="fas fa-check-circle" className="text-cyan-400 mt-1 flex-shrink-0" aria-hidden="true" />
+                      <Icon
+                        name="fas fa-check-circle"
+                        className="text-cyan-400 mt-1 flex-shrink-0"
+                        aria-hidden="true"
+                      />
                       <span className="text-gray-300 leading-relaxed">{t}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="mt-8 p-5 rounded-xl border border-white/10 bg-blue-500/5">
                   <div className="flex items-start gap-3">
-                    <Icon name="fas fa-shield-alt" className="text-cyan-300 mt-1" aria-hidden="true" />
+                    <Icon
+                      name="fas fa-shield-alt"
+                      className="text-cyan-300 mt-1"
+                      aria-hidden="true"
+                    />
                     <p className="text-sm text-gray-300">
-                      Sem promessas de retorno. A ferramenta apoia com estrutura e transparência — a decisão final é sempre sua.
+                      Sem promessas de retorno. A ferramenta apoia com estrutura e transparência — a
+                      decisão final é sempre sua.
                     </p>
                   </div>
                 </div>
@@ -312,5 +347,3 @@ export default function AprendizadoContinuoPage() {
     </>
   )
 }
-
-

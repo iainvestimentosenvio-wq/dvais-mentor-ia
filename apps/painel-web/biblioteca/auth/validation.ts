@@ -1,9 +1,9 @@
 /**
  * Validações Completas (Re-exportação dos módulos)
- * 
+ *
  * Este arquivo re-exporta todas as validações dos módulos separados
  * para manter compatibilidade com código existente.
- * 
+ *
  * Para reduzir bundle size, importe diretamente dos módulos específicos:
  * - validation-auth.ts (email, senha básica, login)
  * - validation-br.ts (CPF, CNPJ, telefone - pesado com libphonenumber-js)
@@ -75,21 +75,20 @@ import { cpfSchema, phoneSchema } from './validation-br'
 /**
  * Schema completo de registro (combina todos os módulos)
  */
-export const registerSchema = z.object({
-  name: nameSchema,
-  email: emailSchema,
-  password: passwordSchema,
-  confirmPassword: z.string(),
-  cpf: cpfSchema,
-  phone: phoneSchema,
-  acceptTerms: z.boolean().refine(val => val === true, 'Você deve aceitar os termos de uso'),
-}).refine(
-  (data) => data.password === data.confirmPassword,
-  {
+export const registerSchema = z
+  .object({
+    name: nameSchema,
+    email: emailSchema,
+    password: passwordSchema,
+    confirmPassword: z.string(),
+    cpf: cpfSchema,
+    phone: phoneSchema,
+    acceptTerms: z.boolean().refine(val => val === true, 'Você deve aceitar os termos de uso'),
+  })
+  .refine(data => data.password === data.confirmPassword, {
     message: 'As senhas não coincidem',
     path: ['confirmPassword'],
-  }
-)
+  })
 
 /**
  * Validar formulário completo de registro
@@ -100,24 +99,24 @@ export function validateRegisterForm(data: unknown): {
   data?: z.infer<typeof registerSchema>
 } {
   const result = registerSchema.safeParse(data)
-  
+
   if (!result.success) {
     const errors: Record<string, string> = {}
     result.error.issues.forEach(err => {
       const path = err.path.join('.')
       errors[path] = err.message
     })
-    
+
     return {
       isValid: false,
-      errors
+      errors,
     }
   }
-  
+
   return {
     isValid: true,
     errors: {},
-    data: result.data
+    data: result.data,
   }
 }
 
@@ -156,7 +155,7 @@ export const VALIDATION_RULES = {
   },
   CNPJ: {
     LENGTH: 14,
-  }
+  },
 } as const
 
 export const ERROR_MESSAGES = {
@@ -184,13 +183,13 @@ export function debounce<T extends (...args: unknown[]) => unknown>(
   wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout | null = null
-  
+
   return function executedFunction(...args: Parameters<T>) {
     const later = () => {
       timeout = null
       func(...args)
     }
-    
+
     if (timeout) clearTimeout(timeout)
     timeout = setTimeout(later, wait)
   }

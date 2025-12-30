@@ -59,11 +59,51 @@ export default function RocketIcon({ className = '' }: RocketIconProps) {
       {/* Fogo e fumaça - animação no hover (controlada via CSS em globals.css) */}
       <g className="rocket-fire" style={{ opacity: 0, transition: 'opacity 0.3s ease' }}>
         {/* Fumaça */}
-        <ellipse cx="8" cy="20" rx="2" ry="1.5" fill="#9ca3af" opacity="0.8" className="animate-smoke-rise" />
-        <ellipse cx="10" cy="20" rx="2" ry="1.5" fill="#6b7280" opacity="0.7" className="animate-smoke-rise smoke-delay-1" />
-        <ellipse cx="12" cy="20" rx="3" ry="2" fill="#4b5563" opacity="0.7" className="animate-smoke-rise smoke-delay-2" />
-        <ellipse cx="14" cy="20" rx="2" ry="1.5" fill="#6b7280" opacity="0.7" className="animate-smoke-rise smoke-delay-3" />
-        <ellipse cx="16" cy="20" rx="2" ry="1.5" fill="#9ca3af" opacity="0.8" className="animate-smoke-rise smoke-delay-4" />
+        <ellipse
+          cx="8"
+          cy="20"
+          rx="2"
+          ry="1.5"
+          fill="#9ca3af"
+          opacity="0.8"
+          className="animate-smoke-rise"
+        />
+        <ellipse
+          cx="10"
+          cy="20"
+          rx="2"
+          ry="1.5"
+          fill="#6b7280"
+          opacity="0.7"
+          className="animate-smoke-rise smoke-delay-1"
+        />
+        <ellipse
+          cx="12"
+          cy="20"
+          rx="3"
+          ry="2"
+          fill="#4b5563"
+          opacity="0.7"
+          className="animate-smoke-rise smoke-delay-2"
+        />
+        <ellipse
+          cx="14"
+          cy="20"
+          rx="2"
+          ry="1.5"
+          fill="#6b7280"
+          opacity="0.7"
+          className="animate-smoke-rise smoke-delay-3"
+        />
+        <ellipse
+          cx="16"
+          cy="20"
+          rx="2"
+          ry="1.5"
+          fill="#9ca3af"
+          opacity="0.8"
+          className="animate-smoke-rise smoke-delay-4"
+        />
 
         {/* Chama */}
         <path
@@ -85,7 +125,12 @@ export default function RocketIcon({ className = '' }: RocketIconProps) {
           opacity="0.9"
           className="animate-fire-flicker fire-delay-2"
         />
-        <path d="M10 20 Q11 19.5 12 20" fill="#ef4444" opacity="0.85" className="animate-fire-flicker fire-delay-3" />
+        <path
+          d="M10 20 Q11 19.5 12 20"
+          fill="#ef4444"
+          opacity="0.85"
+          className="animate-fire-flicker fire-delay-3"
+        />
       </g>
 
       {/* Corpo principal do foguete - estilo Falcon 9 */}
@@ -111,7 +156,3 @@ export default function RocketIcon({ className = '' }: RocketIconProps) {
     </svg>
   )
 }
-
-
-
-

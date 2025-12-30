@@ -74,20 +74,25 @@ export default function CardsProtecao() {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Proteção Inteligente combina segurança, gestão de risco e transparência — sem promessas irreais.
+            Proteção Inteligente combina segurança, gestão de risco e transparência — sem promessas
+            irreais.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {pilares.map((pilar) => (
+          {pilares.map(pilar => (
             <div
               key={pilar.title}
               className={`group relative glass-intense border ${pilar.borderColor} rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-500/20 card-glow-hover`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${pilar.gradient} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${pilar.gradient} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+              />
 
               <div className="relative z-10 space-y-6">
-                <div className={`w-16 h-16 bg-gradient-to-br ${pilar.iconGradient} rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-2 transition-all duration-300`}>
+                <div
+                  className={`w-16 h-16 bg-gradient-to-br ${pilar.iconGradient} rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-2 transition-all duration-300`}
+                >
                   <Icon name={pilar.icon} className="text-white text-2xl" aria-hidden="true" />
                 </div>
 
@@ -97,9 +102,13 @@ export default function CardsProtecao() {
                 </div>
 
                 <ul className="space-y-3">
-                  {pilar.bullets.map((item) => (
+                  {pilar.bullets.map(item => (
                     <li key={item} className="flex items-start gap-3">
-                      <Icon name="fas fa-check-circle" className="text-cyan-400 mt-1 flex-shrink-0" aria-hidden="true" />
+                      <Icon
+                        name="fas fa-check-circle"
+                        className="text-cyan-400 mt-1 flex-shrink-0"
+                        aria-hidden="true"
+                      />
                       <span className="text-gray-300">{item}</span>
                     </li>
                   ))}
@@ -112,6 +121,3 @@ export default function CardsProtecao() {
     </section>
   )
 }
-
-
-

@@ -8,27 +8,27 @@ import Icon from '../Icon'
 
 /**
  * LoginForm Component
- * 
+ *
  * Formulário de login com validação client-side
  * - Validação em tempo real
  * - Feedback visual de erros
  * - Integração OAuth (preparado)
  * - Link para registro
- * 
+ *
  * Validação:
  * - Email: formato válido
  * - Senha: mínimo 12 caracteres, complexidade
  * - Feedback instantâneo (UX)
  * - Validação server-side também necessária (segurança)
- * 
+ *
  * Performance:
  * - Client Component (usa hooks)
  * - Validação otimizada (debounce)
  * - Não bloqueia UI
- * 
+ *
  * @param {boolean} showOAuth - Se true, exibe botões OAuth
  * @param {boolean} showRegisterLink - Se true, exibe link para registro
- * 
+ *
  * @returns {JSX.Element} Formulário de login completo
  */
 
@@ -38,13 +38,10 @@ interface LoginFormData {
   password: string
 }
 
-export default function LoginForm({
-  showOAuth = true,
-  showRegisterLink = true
-}: LoginFormProps) {
+export default function LoginForm({ showOAuth = true, showRegisterLink = true }: LoginFormProps) {
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
-    password: ''
+    password: '',
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,7 +49,7 @@ export default function LoginForm({
 
   const handleChange = (field: keyof LoginFormData, value: string) => {
     setFormData((prev: LoginFormData) => ({ ...prev, [field]: value }))
-    
+
     // Limpar erro do campo ao digitar
     const fieldKey = field as string
     if (errors[fieldKey]) {
@@ -66,18 +63,18 @@ export default function LoginForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Validar formulário
     const validation = validateLoginForm(formData)
-    
+
     if (!validation.isValid) {
       setErrors(validation.errors)
       return
     }
-    
+
     setIsSubmitting(true)
     setErrors({})
-    
+
     try {
       // Preparado para integração com NextAuth.js
       // const result = await signIn('credentials', {
@@ -85,13 +82,12 @@ export default function LoginForm({
       //   password: formData.password,
       //   redirect: false,
       // })
-      
+
       // Simulação (remover quando integrar backend)
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
+
       // Redirecionar (quando tiver backend)
       // router.push(redirectTo)
-      
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Erro ao fazer login'
       setErrors({ submit: errorMessage })
@@ -112,7 +108,7 @@ export default function LoginForm({
             id="email"
             type="email"
             value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
+            onChange={e => handleChange('email', e.target.value)}
             className={`
               w-full px-4 py-3 rounded-lg
               bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'}
@@ -125,11 +121,7 @@ export default function LoginForm({
             autoComplete="email"
             required
           />
-          {errors.email && (
-            <p className="mt-2 text-sm text-red-400">
-              {errors.email}
-            </p>
-          )}
+          {errors.email && <p className="mt-2 text-sm text-red-400">{errors.email}</p>}
         </div>
 
         {/* Senha */}
@@ -142,7 +134,7 @@ export default function LoginForm({
               id="password"
               type={showPassword ? 'text' : 'password'}
               value={formData.password}
-              onChange={(e) => handleChange('password', e.target.value)}
+              onChange={e => handleChange('password', e.target.value)}
               className={`
                 w-full px-4 py-3 rounded-lg
                 bg-white/5 border ${errors.password ? 'border-red-500/50' : 'border-white/10'}
@@ -165,11 +157,7 @@ export default function LoginForm({
               <Icon name={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden="true" />
             </button>
           </div>
-          {errors.password && (
-            <p className="mt-2 text-sm text-red-400">
-              {errors.password}
-            </p>
-          )}
+          {errors.password && <p className="mt-2 text-sm text-red-400">{errors.password}</p>}
         </div>
 
         {/* Esqueci minha senha */}
@@ -195,9 +183,7 @@ export default function LoginForm({
         {/* Erro geral */}
         {errors.submit && (
           <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30">
-            <p className="text-sm text-red-400">
-              {errors.submit}
-            </p>
+            <p className="text-sm text-red-400">{errors.submit}</p>
           </div>
         )}
 
@@ -243,9 +229,7 @@ export default function LoginForm({
           </div>
 
           <div className="mt-6">
-            <OAuthButtons 
-              mode="login"
-            />
+            <OAuthButtons mode="login" />
           </div>
         </div>
       )}
@@ -267,4 +251,3 @@ export default function LoginForm({
     </>
   )
 }
-

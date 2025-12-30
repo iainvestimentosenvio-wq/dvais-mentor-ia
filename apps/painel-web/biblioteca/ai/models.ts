@@ -1,6 +1,6 @@
 /**
  * AI Models Management
- * 
+ *
  * Gerenciamento de modelos de IA (TensorFlow.js)
  * Cache inteligente e lazy loading de modelos
  */
@@ -61,34 +61,34 @@ export async function loadModel(name: string): Promise<TFModel> {
     }
     return modelCache.get(name)!
   }
-  
+
   // Verificar se está registrado
   const modelInfo = modelRegistry.get(name)
   if (!modelInfo) {
     throw new Error(`Modelo não registrado: ${name}`)
   }
-  
+
   try {
     if (process.env.NODE_ENV !== 'production') {
       console.log(`⏳ Carregando modelo: ${name} (${modelInfo.url})`)
     }
     const startTime = performance.now()
-    
+
     // Carregar modelo (importação dinâmica do TensorFlow.js completo)
     const tf = await import('@tensorflow/tfjs')
     const model = await tf.loadLayersModel(modelInfo.url)
-    
+
     const endTime = performance.now()
     const loadTime = endTime - startTime
-    
+
     // Adicionar ao cache
     modelCache.set(name, model)
     modelInfo.loaded = true
-    
+
     if (process.env.NODE_ENV !== 'production') {
       console.log(`✅ Modelo carregado: ${name} (${loadTime.toFixed(2)}ms)`)
     }
-    
+
     return model
   } catch (error) {
     console.error(`❌ Erro ao carregar modelo ${name}:`, error)
@@ -103,16 +103,21 @@ export async function unloadModel(name: string): Promise<void> {
   const model = modelCache.get(name)
   if (model) {
     // Verificar se o modelo tem método dispose (TensorFlow.js)
-    if (model && typeof model === 'object' && 'dispose' in model && typeof (model as { dispose: () => void }).dispose === 'function') {
-      (model as { dispose: () => void }).dispose()
+    if (
+      model &&
+      typeof model === 'object' &&
+      'dispose' in model &&
+      typeof (model as { dispose: () => void }).dispose === 'function'
+    ) {
+      ;(model as { dispose: () => void }).dispose()
     }
     modelCache.delete(name)
-    
+
     const modelInfo = modelRegistry.get(name)
     if (modelInfo) {
       modelInfo.loaded = false
     }
-    
+
     if (process.env.NODE_ENV !== 'production') {
       console.log(`🗑️ Modelo descarregado: ${name}`)
     }
@@ -141,22 +146,27 @@ export async function clearModelCache(): Promise<void> {
   const entries = Array.from(modelCache.entries())
   for (const [name, model] of entries) {
     // Verificar se o modelo tem método dispose (TensorFlow.js)
-    if (model && typeof model === 'object' && 'dispose' in model && typeof (model as { dispose: () => void }).dispose === 'function') {
-      (model as { dispose: () => void }).dispose()
+    if (
+      model &&
+      typeof model === 'object' &&
+      'dispose' in model &&
+      typeof (model as { dispose: () => void }).dispose === 'function'
+    ) {
+      ;(model as { dispose: () => void }).dispose()
     }
     if (process.env.NODE_ENV !== 'production') {
       console.log(`🗑️ Modelo descarregado: ${name}`)
     }
   }
-  
+
   modelCache.clear()
-  
+
   // Usar Array.from para evitar problemas com downlevelIteration
   const modelInfos = Array.from(modelRegistry.values())
   for (const modelInfo of modelInfos) {
     modelInfo.loaded = false
   }
-  
+
   if (process.env.NODE_ENV !== 'production') {
     console.log('✅ Cache de modelos limpo')
   }
@@ -173,7 +183,7 @@ export async function getMemoryInfo(): Promise<{
 }> {
   const tf = await import('@tensorflow/tfjs')
   const memoryInfo = tf.memory()
-  
+
   return {
     numTensors: memoryInfo.numTensors,
     numBytes: memoryInfo.numBytes,
@@ -186,11 +196,11 @@ export async function getMemoryInfo(): Promise<{
  */
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 Bytes'
-  
+
   const k = 1024
   const sizes = ['Bytes', 'KB', 'MB', 'GB']
   const i = Math.floor(Math.log(bytes) / Math.log(k))
-  
+
   return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i]
 }
 
@@ -203,4 +213,3 @@ if (typeof window !== 'undefined') {
   //   url: '/models/example-model/model.json',
   // })
 }
-

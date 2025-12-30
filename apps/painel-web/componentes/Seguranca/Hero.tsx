@@ -3,24 +3,24 @@ import RocketIcon from '@/componentes/RocketIcon'
 
 /**
  * Hero Component - Proteção Inteligente
- * 
+ *
  * Seção principal da página de Proteção Inteligente
  * - Título impactante com gradiente
  * - Descrição sobre camadas de segurança, gestão de risco e transparência
  * - Dois botões CTA: "Começar Agora" (com foguete) e "Ver Funcionamento"
  * - Ícone de segurança (escudo)
- * 
+ *
  * Design:
  * - Glassmorphism (backdrop-blur)
  * - Gradientes animados azul-cyan
  * - Layout responsivo
  * - Animações hover nos botões (CSS puro)
- * 
+ *
  * Performance:
  * - Server Component (compatível com App Router)
  * - Não lazy loaded (above the fold, crítico para LCP)
  * - Animações via CSS (sem JavaScript)
- * 
+ *
  * @returns {JSX.Element} Hero da página de Proteção Inteligente
  */
 export default function SegurancaHero() {
@@ -46,15 +46,25 @@ export default function SegurancaHero() {
           <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Camadas de segurança, gestão de risco e transparência para proteger seus investimentos.
             <br />
-            <span className="text-cyan-400 font-semibold">Investir com confiança é investir com proteção.</span>
+            <span className="text-cyan-400 font-semibold">
+              Investir com confiança é investir com proteção.
+            </span>
           </p>
 
           {/* Descrição principal */}
           <div className="space-y-6 max-w-5xl mx-auto mt-12">
             <p className="text-lg text-gray-300 leading-relaxed text-center">
-              O <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">DVAi$ - Mentor IA</span> foi desenvolvido com foco em{' '}
-              <span className="text-cyan-400 font-semibold">segurança, transparência e educação</span>. 
-              Não fazemos custódia e não prometemos lucro, mas prometemos te orientar a investir com técnicas avançadas usadas pelos melhores. Nossa missão é orientar você com base em boas práticas e análise educacional.{' '}
+              O{' '}
+              <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+                DVAi$ - Mentor IA
+              </span>{' '}
+              foi desenvolvido com foco em{' '}
+              <span className="text-cyan-400 font-semibold">
+                segurança, transparência e educação
+              </span>
+              . Não fazemos custódia e não prometemos lucro, mas prometemos te orientar a investir
+              com técnicas avançadas usadas pelos melhores. Nossa missão é orientar você com base em
+              boas práticas e análise educacional.{' '}
               <span className="text-cyan-400 font-semibold">Seu Lucro é o nosso sucesso.</span>
             </p>
           </div>
@@ -78,13 +88,18 @@ export default function SegurancaHero() {
               aria-label="Ver funcionamento"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-              
+
               {/* Ícone pequeno - desaparece no hover */}
-              <Icon name="fas fa-play" className="relative z-10 transform group-hover:scale-0 group-hover:opacity-0 transition-all duration-300 flex-shrink-0 w-4 h-4" />
-              
+              <Icon
+                name="fas fa-play"
+                className="relative z-10 transform group-hover:scale-0 group-hover:opacity-0 transition-all duration-300 flex-shrink-0 w-4 h-4"
+              />
+
               {/* Texto "Ver Funcionamento" - desaparece no hover */}
-              <span className="relative z-10 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300">Ver Funcionamento</span>
-              
+              <span className="relative z-10 group-hover:opacity-0 group-hover:scale-0 transition-all duration-300">
+                Ver Funcionamento
+              </span>
+
               {/* Botão de player grande - aparece no hover */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-100 transition-all duration-300 z-20 pointer-events-none">
                 <div className="relative">
@@ -92,7 +107,10 @@ export default function SegurancaHero() {
                   <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-xl group-hover:animate-pulse"></div>
                   {/* Ícone de play grande */}
                   <div className="relative bg-cyan-500/30 backdrop-blur-sm rounded-full p-4 border-2 border-cyan-400/50 group-hover:border-cyan-400 transition-all duration-300">
-                    <Icon name="fas fa-play" className="text-3xl text-cyan-300 transform translate-x-0.5 group-hover:scale-110 transition-transform duration-300" />
+                    <Icon
+                      name="fas fa-play"
+                      className="text-3xl text-cyan-300 transform translate-x-0.5 group-hover:scale-110 transition-transform duration-300"
+                    />
                   </div>
                 </div>
               </div>
@@ -113,4 +131,3 @@ export default function SegurancaHero() {
     </section>
   )
 }
-

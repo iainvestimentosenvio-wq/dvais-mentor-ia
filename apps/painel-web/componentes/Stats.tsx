@@ -2,23 +2,23 @@ import Icon from './Icon'
 
 /**
  * Stats Component
- * 
+ *
  * Exibe estatísticas e números da plataforma DVAi$
  * - 100% Automatizado
  * - 24/7 Assistente IA
  * - Tempo Real
  * - Múltiplas Corretoras
- * 
+ *
  * Design:
  * - Cards com gradientes animados
  * - Ícones FontAwesome
  * - Números destacados
  * - Layout responsivo (grid)
- * 
+ *
  * Performance:
  * - Server Component (não usa 'use client')
  * - Lazy loaded na página principal (app/page.tsx)
- * 
+ *
  * @returns {JSX.Element} Seção de estatísticas com 4 cards principais
  */
 export default function Stats() {
@@ -27,26 +27,26 @@ export default function Stats() {
       number: '100%',
       label: 'Automatizado',
       icon: 'fas fa-robot',
-      gradient: 'from-blue-400 to-blue-500'
+      gradient: 'from-blue-400 to-blue-500',
     },
     {
       number: '24/7',
       label: 'Assistente IA',
       icon: 'fas fa-headset',
-      gradient: 'from-cyan-400 to-cyan-500'
+      gradient: 'from-cyan-400 to-cyan-500',
     },
     {
       number: 'Tempo',
       label: 'Real',
       icon: 'fas fa-bolt',
-      gradient: 'from-blue-400 to-cyan-400'
+      gradient: 'from-blue-400 to-cyan-400',
     },
     {
       number: 'Integrado',
       label: 'Corretoras',
       icon: 'fas fa-building',
-      gradient: 'from-cyan-400 to-blue-500'
-    }
+      gradient: 'from-cyan-400 to-blue-500',
+    },
   ]
 
   return (
@@ -72,19 +72,25 @@ export default function Stats() {
               className="group relative glass-intense border border-white/10 rounded-2xl p-8 text-center transition-all duration-500 hover:border-blue-400/30 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 card-glow-hover"
             >
               {/* Hover Glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}
+              ></div>
+
               <div className="relative z-10">
                 {/* Icon */}
-                <div className={`w-14 h-14 bg-gradient-to-br ${stat.gradient} rounded-xl flex items-center justify-center mb-4 mx-auto shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                <div
+                  className={`w-14 h-14 bg-gradient-to-br ${stat.gradient} rounded-xl flex items-center justify-center mb-4 mx-auto shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
+                >
                   <Icon name={stat.icon} className="text-white text-xl" />
                 </div>
-                
+
                 {/* Number */}
-                <div className={`text-3xl lg:text-4xl font-extrabold mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent leading-tight`}>
+                <div
+                  className={`text-3xl lg:text-4xl font-extrabold mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent leading-tight`}
+                >
                   {stat.number}
                 </div>
-                
+
                 {/* Label */}
                 <p className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors duration-300">
                   {stat.label}
@@ -97,4 +103,3 @@ export default function Stats() {
     </section>
   )
 }
-

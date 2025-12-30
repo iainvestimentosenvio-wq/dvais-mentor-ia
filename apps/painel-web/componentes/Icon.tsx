@@ -53,11 +53,11 @@ import {
 
 /**
  * Mapeamento de nomes de ícones para componentes FontAwesome
- * 
+ *
  * Estrutura:
  * - Chave: nome do ícone (ex: 'fa-check-circle')
  * - Valor: componente FontAwesome correspondente
- * 
+ *
  * Otimização:
  * - Apenas ícones usados no projeto são importados
  * - Tree-shaking remove ícones não usados
@@ -126,54 +126,54 @@ interface IconProps {
 
 /**
  * Icon Component
- * 
+ *
  * Componente wrapper para ícones FontAwesome
  * - Renderiza ícones SVG do FontAwesome
  * - Suporta ícones sólidos e de marcas
  * - Tree-shaking automático (apenas ícones usados)
- * 
+ *
  * Funcionalidades:
  * - Normalização de nomes de ícones (aceita vários formatos)
  * - Suporte a animação spin
  * - Acessibilidade (aria-label, aria-hidden)
  * - Estilização via className
- * 
+ *
  * Performance:
  * - Server Component (compatível com App Router)
  * - Tree-shaking remove ícones não usados
  * - SVG renderizado (leve e escalável)
- * 
+ *
  * @param {string} name - Nome do ícone (ex: 'fa-check-circle', 'fas fa-check-circle')
  * @param {string} className - Classes CSS adicionais
  * @param {boolean} spin - Se true, anima o ícone com rotação
  * @param {object} props - Props adicionais (aria-label, aria-hidden, etc.)
- * 
+ *
  * @returns {JSX.Element | null} Componente de ícone ou null se não encontrado
  */
 export default function Icon({ name, className = '', spin = false, style, ...props }: IconProps) {
   /**
    * Normalizar nome do ícone
-   * 
+   *
    * Aceita vários formatos:
    * - 'fa-check-circle'
    * - 'fas fa-check-circle'
    * - 'fab fa-google'
-   * 
+   *
    * Remove prefixos desnecessários para buscar no iconMap
    */
   const iconName = name.replace(/^(fas|far|fab|fal|fad)\s+fa-?/, 'fa-')
-  
+
   // Buscar ícone no mapeamento
   const icon = iconMap[iconName]
-  
+
   // Se ícone não encontrado, avisar e retornar null (não quebra a UI)
   if (!icon) {
     console.warn(`Ícone não encontrado: ${name}. Verifique se foi importado em iconMap.`)
     return null
   }
-  
+
   const ariaHidden = props['aria-hidden'] === 'true' || props['aria-hidden'] === true
-  
+
   return (
     <FontAwesomeIcon
       icon={icon}
@@ -181,7 +181,7 @@ export default function Icon({ name, className = '', spin = false, style, ...pro
       spin={spin}
       aria-hidden={ariaHidden ? true : undefined}
       aria-label={props['aria-label']}
-      style={{ 
+      style={{
         color: 'currentColor',
         margin: '0 !important',
         padding: '0 !important',
@@ -191,4 +191,3 @@ export default function Icon({ name, className = '', spin = false, style, ...pro
     />
   )
 }
-

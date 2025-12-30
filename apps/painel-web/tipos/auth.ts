@@ -1,6 +1,6 @@
 /**
  * Tipos TypeScript para Sistema de Autenticação
- * 
+ *
  * IMPORTANTE: Estes tipos são usados tanto no frontend quanto no backend.
  * Mantenha sincronizado com o schema do Prisma.
  */
@@ -24,22 +24,22 @@ export interface User {
   emailVerified: Date | null
   image: string | null
   role: UserRole
-  
+
   // Campos adicionais
   cpf: string | null
   cnpj: string | null
   phone: string | null
   phoneVerified: boolean
-  
+
   // Auditoria
   createdAt: Date
   updatedAt: Date
   lastLoginAt: Date | null
   lastLoginIp: string | null
-  
+
   // MFA
   mfaEnabled: boolean
-  
+
   // Status
   isActive: boolean
   isLocked: boolean
@@ -728,35 +728,35 @@ export interface AuthConfig {
   registerUrl: string
   logoutUrl: string
   callbackUrl: string
-  
+
   // OAuth
   oauthProviders: OAuthProvider[]
-  
+
   // Segurança
   passwordMinLength: number
   passwordRequireUppercase: boolean
   passwordRequireLowercase: boolean
   passwordRequireNumber: boolean
   passwordRequireSpecial: boolean
-  
+
   // MFA
   mfaRequired: boolean
   mfaBackupCodes: number
-  
+
   // Rate limiting
   loginMaxAttempts: number
   loginWindowMs: number
   registerMaxAttempts: number
   registerWindowMs: number
-  
+
   // Sessões
   sessionMaxAge: number
   sessionUpdateAge: number
-  
+
   // Email
   requireEmailVerification: boolean
   emailVerificationExpiresIn: number
-  
+
   // Password reset
   passwordResetExpiresIn: number
 }
@@ -778,7 +778,7 @@ export type Required<T, K extends keyof T> = Omit<T, K> & globalThis.Required<Pi
 /**
  * Extrair tipo de array
  */
-export type ArrayElement<ArrayType extends readonly unknown[]> = 
+export type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never
 
 // ============================================
@@ -795,7 +795,7 @@ export const AUTH_CONSTANTS = {
   REFRESH_TOKEN_MAX_AGE: 30 * 24 * 60 * 60, // 30 dias em segundos
   EMAIL_VERIFICATION_EXPIRES: 24 * 60 * 60 * 1000, // 24 horas em ms
   PASSWORD_RESET_EXPIRES: 60 * 60 * 1000, // 1 hora em ms
-  
+
   // Rate limiting
   LOGIN_MAX_ATTEMPTS: 5,
   LOGIN_WINDOW_MS: 60 * 1000, // 1 minuto
@@ -803,20 +803,20 @@ export const AUTH_CONSTANTS = {
   REGISTER_WINDOW_MS: 60 * 60 * 1000, // 1 hora
   PASSWORD_RESET_MAX_ATTEMPTS: 3,
   PASSWORD_RESET_WINDOW_MS: 60 * 60 * 1000, // 1 hora
-  
+
   // Account lockout
   MAX_FAILED_ATTEMPTS: 5,
   LOCKOUT_DURATION_MS: 15 * 60 * 1000, // 15 minutos
-  
+
   // Senhas
   PASSWORD_MIN_LENGTH: 12,
   PASSWORD_MAX_LENGTH: 128,
   PASSWORD_MIN_STRENGTH: 60, // Score mínimo aceitável
-  
+
   // MFA
   MFA_BACKUP_CODES_COUNT: 10,
   MFA_TOKEN_WINDOW: 2, // Períodos de 30s aceitos antes/depois
-  
+
   // Cookies
   COOKIE_NAME: '__Secure-next-auth.session-token',
   CSRF_COOKIE_NAME: 'csrf-token',
@@ -871,11 +871,11 @@ export function isAuthError(error: unknown): error is AuthError {
  */
 export function hasRole(user: SessionUser | null, role: UserRole | UserRole[]): boolean {
   if (!user) return false
-  
+
   if (Array.isArray(role)) {
     return role.includes(user.role)
   }
-  
+
   return user.role === role
 }
 
@@ -893,4 +893,3 @@ export function isSessionValid(session: Session | null): boolean {
   if (!session) return false
   return new Date(session.expires) > new Date()
 }
-

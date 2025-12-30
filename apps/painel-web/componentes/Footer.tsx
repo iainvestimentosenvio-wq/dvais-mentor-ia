@@ -2,29 +2,28 @@ import Icon from './Icon'
 
 /**
  * Footer Component
- * 
+ *
  * Rodapé da aplicação com informações e links
  * - Logo e descrição da marca
  * - Links sociais (preparado para integração)
  * - Links de navegação (Produto, Empresa, Legal)
  * - Copyright e créditos
- * 
+ *
  * Estrutura:
  * - 4 colunas em desktop (Brand, Produto, Empresa, Legal)
  * - 1 coluna em mobile (stack vertical)
  * - Links de navegação com smooth scroll (via CSS global)
  * - Links sociais preparados para integração
- * 
+ *
  * Performance:
  * - Server Component (compatível com App Router)
  * - Scroll suave via CSS (scroll-behavior: smooth no globals.css)
  * - Lazy loaded na página principal (app/page.tsx)
  * - Não crítico para FCP (abaixo da dobra)
- * 
+ *
  * @returns {JSX.Element} Rodapé completo com links e informações
  */
 export default function Footer() {
-
   return (
     <footer className="border-t border-white/10 bg-black/20 backdrop-blur-sm mt-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 py-12">
@@ -40,17 +39,27 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Plataforma de IA que guia você passo a passo nas principais corretoras de investimento.
+              Plataforma de IA que guia você passo a passo nas principais corretoras de
+              investimento.
             </p>
             {/* Social Links */}
             <div className="flex space-x-4 pt-2">
-              <a href="#" className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/30 hover:bg-blue-500/10 transition-all duration-300">
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/30 hover:bg-blue-500/10 transition-all duration-300"
+              >
                 <Icon name="fab fa-twitter" />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/30 hover:bg-blue-500/10 transition-all duration-300">
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/30 hover:bg-blue-500/10 transition-all duration-300"
+              >
                 <Icon name="fab fa-linkedin" />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/30 hover:bg-blue-500/10 transition-all duration-300">
+              <a
+                href="#"
+                className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/30 hover:bg-blue-500/10 transition-all duration-300"
+              >
                 <Icon name="fab fa-github" />
               </a>
             </div>
@@ -60,27 +69,90 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white mb-4">Produto</h4>
             <ul className="space-y-3">
-              <li><a href="#features" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Funcionalidades</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Preços</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Perguntas Frequentes</a></li>
+              <li>
+                <a
+                  href="#features"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Funcionalidades
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Preços
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Perguntas Frequentes
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold text-white mb-4">Empresa</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Sobre</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Contato</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Sobre
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Contato
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold text-white mb-4">Legal</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Privacidade</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Termos</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">Cookies</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Privacidade
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Termos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm"
+                >
+                  Cookies
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -101,4 +173,3 @@ export default function Footer() {
     </footer>
   )
 }
-

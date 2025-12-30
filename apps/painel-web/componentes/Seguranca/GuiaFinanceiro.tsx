@@ -37,14 +37,23 @@ export default function GuiaFinanceiro() {
           <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
             <span className="text-white font-semibold">Seu mercado muda. Sua vida também.</span>
             <br />
-            Investir com <span className="text-cyan-400 font-semibold">segurança</span> exige decisões alinhadas com a sua <span className="text-cyan-400 font-semibold">realidade</span>: contas do mês, imprevistos, <span className="text-cyan-400 font-semibold">metas</span> e <span className="text-cyan-400 font-semibold">prazos</span>.
-            <br />
-            O <span className="text-white font-semibold">Guia Financeiro</span> ajuda você a definir quanto investir com <span className="text-cyan-400 font-semibold">tranquilidade</span>, quando <span className="text-cyan-400 font-semibold">reduzir risco</span> e quando <span className="text-cyan-400 font-semibold">priorizar reservas</span> — para que o investimento não comprometa sua <span className="text-cyan-400 font-semibold">estabilidade</span>.
+            Investir com <span className="text-cyan-400 font-semibold">segurança</span> exige
+            decisões alinhadas com a sua{' '}
+            <span className="text-cyan-400 font-semibold">realidade</span>: contas do mês,
+            imprevistos, <span className="text-cyan-400 font-semibold">metas</span> e{' '}
+            <span className="text-cyan-400 font-semibold">prazos</span>.
+            <br />O <span className="text-white font-semibold">Guia Financeiro</span> ajuda você a
+            definir quanto investir com{' '}
+            <span className="text-cyan-400 font-semibold">tranquilidade</span>, quando{' '}
+            <span className="text-cyan-400 font-semibold">reduzir risco</span> e quando{' '}
+            <span className="text-cyan-400 font-semibold">priorizar reservas</span> — para que o
+            investimento não comprometa sua{' '}
+            <span className="text-cyan-400 font-semibold">estabilidade</span>.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-          {exemplos.map((e) => (
+          {exemplos.map(e => (
             <div
               key={e.title}
               className="group relative glass-intense border border-cyan-400/20 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-cyan-400/40 hover:shadow-cyan-500/20 card-glow-hover"
@@ -71,13 +80,29 @@ export default function GuiaFinanceiro() {
               <Icon name="fas fa-shield-alt" className="text-cyan-300 mt-1" aria-hidden="true" />
               <div className="space-y-3">
                 <p className="text-base text-gray-300 leading-relaxed">
-                  Deixe de lado <span className="text-white font-semibold">promessas fáceis</span>. Aqui o foco é <span className="text-cyan-400 font-semibold">método, dados e tecnologia de alta performance</span> para investimentos e gerenciamento de capital.
+                  Deixe de lado <span className="text-white font-semibold">promessas fáceis</span>.
+                  Aqui o foco é{' '}
+                  <span className="text-cyan-400 font-semibold">
+                    método, dados e tecnologia de alta performance
+                  </span>{' '}
+                  para investimentos e gerenciamento de capital.
                 </p>
                 <p className="text-base text-gray-300 leading-relaxed">
-                  Seu dinheiro é <span className="text-white font-semibold">coisa séria</span> — por isso o <span className="text-cyan-400 font-semibold">DVAi$</span> trabalha com <span className="text-cyan-400 font-semibold">análise contínua</span> e <span className="text-cyan-400 font-semibold">orientações personalizadas</span> para a sua realidade.
+                  Seu dinheiro é <span className="text-white font-semibold">coisa séria</span> — por
+                  isso o <span className="text-cyan-400 font-semibold">DVAi$</span> trabalha com{' '}
+                  <span className="text-cyan-400 font-semibold">análise contínua</span> e{' '}
+                  <span className="text-cyan-400 font-semibold">orientações personalizadas</span>{' '}
+                  para a sua realidade.
                 </p>
                 <p className="text-base text-gray-300 leading-relaxed">
-                  Nossa missão é ser seu <span className="text-white font-semibold">mentor no dia a dia</span>: organizar suas finanças, cortar gastos desnecessários e ajudar seu capital a evoluir com mais <span className="text-cyan-400 font-semibold">segurança, técnica e consistência</span>.
+                  Nossa missão é ser seu{' '}
+                  <span className="text-white font-semibold">mentor no dia a dia</span>: organizar
+                  suas finanças, cortar gastos desnecessários e ajudar seu capital a evoluir com
+                  mais{' '}
+                  <span className="text-cyan-400 font-semibold">
+                    segurança, técnica e consistência
+                  </span>
+                  .
                 </p>
               </div>
             </div>
@@ -107,5 +132,3 @@ export default function GuiaFinanceiro() {
     </section>
   )
 }
-
-

@@ -1,0 +1,31 @@
+{
+  "hero-content": "#hero-content",
+  "features-section": "#features-section",
+  "stats-section": "#stats-section",
+
+  "analise-hero": "#analise-hero",
+  "analise-publico": "#analise-publico",
+  "analise-dados": "#analise-dados",
+  "analise-exclusivos": "#analise-exclusivos",
+
+  "seguranca-hero": "#seguranca-hero",
+  "seguranca-cards": "#seguranca-cards",
+  "seguranca-alertas": "#seguranca-alertas",
+  "seguranca-guia": "#seguranca-guia",
+
+  "aprendizado-hero": "#aprendizado-hero",
+  "voce-aprende": "#voce-aprende",
+  "aprende-realidade": "#aprende-realidade",
+  "aprende-mercado": "#aprende-mercado",
+  "transparencia-controle": "#transparencia-controle",
+  "funcionamento": "#funcionamento",
+
+  "login-card": "#login-card",
+  "cadastro-card": "#cadastro-card",
+
+  "button-comecar-agora": "a[href='/cadastro']",
+  "button-login": "a[href='/login']",
+  "nav-analise": "a[href='/analise-tempo-real']",
+  "nav-seguranca": "a[href='/seguranca']",
+  "nav-aprendizado": "a[href='/aprendizado-continuo']"
+}

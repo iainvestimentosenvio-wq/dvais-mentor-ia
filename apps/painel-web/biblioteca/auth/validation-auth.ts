@@ -1,6 +1,6 @@
 /**
  * Validações de Autenticação (Email, Senha Simples, Login)
- * 
+ *
  * IMPORTANTE: Estas validações são APENAS para UX (feedback rápido).
  * SEMPRE validar novamente no server-side.
  */
@@ -40,7 +40,7 @@ export const nameSchema = z
   .max(100, 'Nome muito longo')
   .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, 'Nome contém caracteres inválidos')
   .trim()
-  .transform(name => 
+  .transform(name =>
     name
       .split(' ')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -74,26 +74,31 @@ export function validateEmail(email: string): {
   error?: string
 } {
   const result = emailSchema.safeParse(email)
-  
+
   if (!result.success) {
     return {
       isValid: false,
-      error: result.error.issues[0]?.message || 'Email inválido'
+      error: result.error.issues[0]?.message || 'Email inválido',
     }
   }
-  
+
   // Verificar domínio comum
   const domain = email.split('@')[1]
   const validDomains = [
-    'gmail.com', 'outlook.com', 'hotmail.com', 'yahoo.com',
-    'icloud.com', 'protonmail.com', 'live.com'
+    'gmail.com',
+    'outlook.com',
+    'hotmail.com',
+    'yahoo.com',
+    'icloud.com',
+    'protonmail.com',
+    'live.com',
   ]
-  
+
   // Apenas aviso, não bloqueia
   if (!validDomains.includes(domain)) {
     console.warn('Domínio de email incomum:', domain)
   }
-  
+
   return { isValid: true }
 }
 
@@ -106,24 +111,24 @@ export function validateLoginForm(data: unknown): {
   data?: z.infer<typeof loginSchema>
 } {
   const result = loginSchema.safeParse(data)
-  
+
   if (!result.success) {
     const errors: Record<string, string> = {}
     result.error.issues.forEach(err => {
       const path = err.path.join('.')
       errors[path] = err.message
     })
-    
+
     return {
       isValid: false,
-      errors
+      errors,
     }
   }
-  
+
   return {
     isValid: true,
     errors: {},
-    data: result.data
+    data: result.data,
   }
 }
 
@@ -136,17 +141,17 @@ export function validateName(name: string): {
   formatted?: string
 } {
   const result = nameSchema.safeParse(name)
-  
+
   if (!result.success) {
     return {
       isValid: false,
-      error: result.error.issues[0]?.message || 'Nome inválido'
+      error: result.error.issues[0]?.message || 'Nome inválido',
     }
   }
-  
+
   return {
     isValid: true,
-    formatted: result.data
+    formatted: result.data,
   }
 }
 

@@ -49,9 +49,10 @@ const securityHeaders = [
   
   // Permissions-Policy
   // Controla features do navegador
+  // microphone=(self) permite microfone no mesmo domínio (necessário para speech recognition)
   {
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+    value: 'camera=(), microphone=(self), geolocation=(), interest-cohort=()'
   },
   
   // Content-Security-Policy (CSP)

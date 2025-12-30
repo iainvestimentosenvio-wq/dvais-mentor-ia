@@ -28,7 +28,8 @@ export default function Integracao() {
       numero: '3',
       titulo: 'Alertas Inteligentes',
       subtitulo: 'Orientação Contextual',
-      descricao: 'Você recebe alertas baseados na sua situação: quando avançar, quando pausar, quando priorizar reservas.',
+      descricao:
+        'Você recebe alertas baseados na sua situação: quando avançar, quando pausar, quando priorizar reservas.',
       icon: 'fas fa-exclamation-triangle',
       gradient: 'from-cyan-400 to-blue-500',
     },
@@ -36,7 +37,8 @@ export default function Integracao() {
       numero: '4',
       titulo: 'Você Decide',
       subtitulo: 'Com Mais Informação',
-      descricao: 'Todas as camadas trabalham juntas para você tomar decisões mais seguras e alinhadas ao seu momento.',
+      descricao:
+        'Todas as camadas trabalham juntas para você tomar decisões mais seguras e alinhadas ao seu momento.',
       icon: 'fas fa-hand-pointer',
       gradient: 'from-blue-400 to-cyan-400',
     },
@@ -52,7 +54,8 @@ export default function Integracao() {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Todas as camadas de proteção trabalham em conjunto para oferecer orientação personalizada e segura.
+            Todas as camadas de proteção trabalham em conjunto para oferecer orientação
+            personalizada e segura.
           </p>
         </div>
 
@@ -67,15 +70,25 @@ export default function Integracao() {
               <div key={index} className="relative">
                 {/* Card da etapa */}
                 <div className="group relative glass-intense border border-blue-400/20 rounded-2xl p-6 shadow-2xl transition-all duration-300 hover:scale-[1.03] hover:border-cyan-400/40 hover:shadow-cyan-500/20 card-glow-hover h-full">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${etapa.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`} />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${etapa.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}
+                  />
 
                   <div className="relative z-10">
                     {/* Número e ícone */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className={`w-14 h-14 bg-gradient-to-br ${etapa.gradient} rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-all duration-300`}>
-                        <Icon name={etapa.icon} className="text-white text-2xl" aria-hidden="true" />
+                      <div
+                        className={`w-14 h-14 bg-gradient-to-br ${etapa.gradient} rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-all duration-300`}
+                      >
+                        <Icon
+                          name={etapa.icon}
+                          className="text-white text-2xl"
+                          aria-hidden="true"
+                        />
                       </div>
-                      <span className={`text-3xl font-extrabold bg-gradient-to-r ${etapa.gradient} bg-clip-text text-transparent`}>
+                      <span
+                        className={`text-3xl font-extrabold bg-gradient-to-r ${etapa.gradient} bg-clip-text text-transparent`}
+                      >
                         {etapa.numero}
                       </span>
                     </div>
@@ -94,7 +107,11 @@ export default function Integracao() {
                 {/* Seta conectora (mobile e tablet) */}
                 {index < etapas.length - 1 && (
                   <div className="lg:hidden flex justify-center my-4">
-                    <Icon name="fas fa-arrow-down" className="text-cyan-400 text-2xl" aria-hidden="true" />
+                    <Icon
+                      name="fas fa-arrow-down"
+                      className="text-cyan-400 text-2xl"
+                      aria-hidden="true"
+                    />
                   </div>
                 )}
               </div>
@@ -113,10 +130,12 @@ export default function Integracao() {
                 <h3 className="text-xl font-bold text-white mb-3">Sistema Integrado e Contínuo</h3>
                 <p className="text-gray-300 leading-relaxed">
                   O <span className="text-cyan-400 font-semibold">Guia Financeiro</span> alimenta os{' '}
-                  <span className="text-cyan-400 font-semibold">Alertas Inteligentes</span>, que por sua vez orientam suas{' '}
+                  <span className="text-cyan-400 font-semibold">Alertas Inteligentes</span>, que por
+                  sua vez orientam suas{' '}
                   <span className="text-cyan-400 font-semibold">Decisões</span> com base na sua{' '}
-                  <span className="text-cyan-400 font-semibold">Realidade</span>. Tudo funciona de forma integrada para
-                  oferecer proteção e orientação personalizada, sem promessas genéricas.
+                  <span className="text-cyan-400 font-semibold">Realidade</span>. Tudo funciona de
+                  forma integrada para oferecer proteção e orientação personalizada, sem promessas
+                  genéricas.
                 </p>
               </div>
             </div>
@@ -126,4 +145,3 @@ export default function Integracao() {
     </section>
   )
 }
-

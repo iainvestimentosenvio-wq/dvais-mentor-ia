@@ -120,6 +120,21 @@ let nextConfig = {
       },
     ]
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/aprendizado',
+        destination: '/aprendizado-continuo',
+        permanent: true,
+      },
+      {
+        source: '/protecao-inteligente',
+        destination: '/seguranca',
+        permanent: true,
+      },
+    ]
+  },
   
   images: {
     formats: ['image/avif', 'image/webp'],

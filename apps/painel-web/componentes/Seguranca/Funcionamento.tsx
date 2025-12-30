@@ -11,25 +11,32 @@ export default function Funcionamento() {
     {
       numero: '01',
       titulo: 'Informe sua realidade financeira',
-      descricao: 'Você informa receitas, despesas, objetivos e situação atual (via site/app ou WhatsApp). O sistema analisa e cria seu perfil de risco personalizado.',
+      descricao:
+        'Você informa receitas, despesas, objetivos e situação atual (via site/app ou WhatsApp). O sistema analisa e cria seu perfil de risco personalizado.',
       icon: 'fas fa-user-check',
     },
     {
       numero: '02',
       titulo: 'Receba alertas inteligentes',
-      descricao: 'Baseado na sua situação, você recebe alertas contextuais. Exemplo: "Sua exposição está acima do recomendado para este mês" ou "Momento de priorizar reservas".',
+      descricao:
+        'Baseado na sua situação, você recebe alertas contextuais. Exemplo: "Sua exposição está acima do recomendado para este mês" ou "Momento de priorizar reservas".',
       icon: 'fas fa-bell',
     },
     {
       numero: '03',
       titulo: 'Acesse relatório mensal e sugestões',
-      descricao: 'No Guia Financeiro (opcional), você recebe relatório mensal com análise da sua situação, sugestões de limites e próximos passos — tudo baseado na sua realidade, não em promessas genéricas.',
+      descricao:
+        'No Guia Financeiro (opcional), você recebe relatório mensal com análise da sua situação, sugestões de limites e próximos passos — tudo baseado na sua realidade, não em promessas genéricas.',
       icon: 'fas fa-chart-pie',
     },
   ]
 
   return (
-    <section id="funcionamento" className="py-20 px-4 lg:px-8 scroll-mt-24" aria-labelledby="funcionamento-title">
+    <section
+      id="funcionamento"
+      className="py-20 px-4 lg:px-8 scroll-mt-24"
+      aria-labelledby="funcionamento-title"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 id="funcionamento-title" className="text-3xl lg:text-5xl font-extrabold mb-4">
@@ -54,8 +61,14 @@ export default function Funcionamento() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">Demonstração do fluxo</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Nesta etapa, deixamos a seção preparada para um vídeo nativo e leve. Quando entrar, usaremos <span className="text-cyan-200 font-semibold">HTML5 &lt;video&gt;</span> com
-                  <span className="text-cyan-200 font-semibold"> preload=&quot;metadata&quot;</span> (sem baixar o vídeo inteiro).
+                  Nesta etapa, deixamos a seção preparada para um vídeo nativo e leve. Quando
+                  entrar, usaremos{' '}
+                  <span className="text-cyan-200 font-semibold">HTML5 &lt;video&gt;</span> com
+                  <span className="text-cyan-200 font-semibold">
+                    {' '}
+                    preload=&quot;metadata&quot;
+                  </span>{' '}
+                  (sem baixar o vídeo inteiro).
                 </p>
               </div>
 
@@ -72,7 +85,9 @@ export default function Funcionamento() {
 
           {/* Passos / checklist */}
           <div className="glass-intense border border-blue-400/15 rounded-2xl p-8 shadow-2xl">
-            <h3 className="text-2xl font-bold text-white mb-8">Como a proteção se encaixa no dia a dia</h3>
+            <h3 className="text-2xl font-bold text-white mb-8">
+              Como a proteção se encaixa no dia a dia
+            </h3>
             <div className="space-y-6">
               {passos.map((passo, index) => (
                 <div key={index} className="group relative">
@@ -83,17 +98,21 @@ export default function Funcionamento() {
                         <span className="text-white font-bold text-lg">{passo.numero}</span>
                       </div>
                     </div>
-                    
+
                     {/* Conteúdo */}
                     <div className="flex-1 pt-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <Icon name={passo.icon} className="text-cyan-400 text-lg" aria-hidden="true" />
+                        <Icon
+                          name={passo.icon}
+                          className="text-cyan-400 text-lg"
+                          aria-hidden="true"
+                        />
                         <h4 className="text-lg font-bold text-white">{passo.titulo}</h4>
                       </div>
                       <p className="text-gray-300 leading-relaxed">{passo.descricao}</p>
                     </div>
                   </div>
-                  
+
                   {/* Linha conectora (exceto no último) */}
                   {index < passos.length - 1 && (
                     <div className="ml-7 mt-4 mb-2 w-0.5 h-6 bg-gradient-to-b from-cyan-400/50 to-blue-400/50"></div>
@@ -106,7 +125,8 @@ export default function Funcionamento() {
               <div className="flex items-start gap-3">
                 <Icon name="fas fa-shield-alt" className="text-cyan-300 mt-1" aria-hidden="true" />
                 <p className="text-sm text-gray-300">
-                  Sem promessas de retorno. A ferramenta apoia com estrutura e transparência — a decisão final é sempre sua.
+                  Sem promessas de retorno. A ferramenta apoia com estrutura e transparência — a
+                  decisão final é sempre sua.
                 </p>
               </div>
             </div>
@@ -135,6 +155,3 @@ export default function Funcionamento() {
     </section>
   )
 }
-
-
-

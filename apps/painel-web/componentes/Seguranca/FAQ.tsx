@@ -42,7 +42,9 @@ export default function FAQ() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <h2 id="faq" className="text-3xl lg:text-5xl font-extrabold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">Perguntas Frequentes</span>
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+              Perguntas Frequentes
+            </span>
           </h2>
           <p className="text-xl text-gray-400">
             Respostas curtas e transparentes para as dúvidas mais comuns.
@@ -50,7 +52,7 @@ export default function FAQ() {
         </div>
 
         <div className="space-y-4">
-          {faqs.map((item) => (
+          {faqs.map(item => (
             <details
               key={item.q}
               className="group glass-intense border border-white/10 rounded-2xl p-6 shadow-xl transition-all duration-300 hover:border-blue-400/30"
@@ -66,9 +68,7 @@ export default function FAQ() {
                   aria-hidden="true"
                 />
               </summary>
-              <div className="pt-4 pl-8 text-gray-300 leading-relaxed">
-                {item.a}
-              </div>
+              <div className="pt-4 pl-8 text-gray-300 leading-relaxed">{item.a}</div>
             </details>
           ))}
         </div>
@@ -76,6 +76,3 @@ export default function FAQ() {
     </section>
   )
 }
-
-
-

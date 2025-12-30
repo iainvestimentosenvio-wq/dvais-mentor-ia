@@ -1,9 +1,9 @@
 /**
  * Configuração do FontAwesome
- * 
+ *
  * IMPORTANTE: Este arquivo deve ser importado no app/layout.tsx
  * para garantir que a configuração seja aplicada globalmente.
- * 
+ *
  * Configuração:
  * - autoAddCss = false: Desabilita CSS automático porque:
  *   - Estamos usando apenas SVG (mais leve)

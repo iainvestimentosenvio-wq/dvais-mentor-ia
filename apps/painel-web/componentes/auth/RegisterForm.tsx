@@ -12,14 +12,14 @@ import Icon from '../Icon'
 // Lazy load PhoneInput (pesado: ~350KB com libphonenumber-js + country-flag-icons)
 const PhoneInput = dynamic(() => import('./PhoneInput'), {
   ssr: false,
-  loading: () => null
+  loading: () => null,
 })
 
 export default function RegisterForm({
   showOAuth = true,
   showLoginLink = true,
   requireCPF = false,
-  requirePhone = false
+  requirePhone = false,
 }: RegisterFormProps) {
   const [formData, setFormData] = useState<RegisterData>({
     name: '',
@@ -29,7 +29,7 @@ export default function RegisterForm({
     cpf: '',
     phone: '',
     acceptTerms: false,
-    marketingConsent: false
+    marketingConsent: false,
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -42,9 +42,9 @@ export default function RegisterForm({
       value = maskCPF(value)
     }
     // PhoneInput já formata automaticamente, não precisa de máscara manual
-    
+
     setFormData(prev => ({ ...prev, [field]: value }))
-    
+
     // Limpar erro do campo ao digitar
     if (errors[field]) {
       setErrors(prev => {
@@ -61,18 +61,18 @@ export default function RegisterForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Validar formulário
     const validation = validateRegisterForm(formData)
-    
+
     if (!validation.isValid) {
       setErrors(validation.errors)
       return
     }
-    
+
     setIsSubmitting(true)
     setErrors({})
-    
+
     try {
       // Preparado para integração com API
       // const response = await fetch('/api/auth/register', {
@@ -80,13 +80,12 @@ export default function RegisterForm({
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify(validation.data)
       // })
-      
+
       // Simulação (remover quando integrar backend)
       await new Promise(resolve => setTimeout(resolve, 1500))
-      
+
       // Redirecionar (quando tiver backend)
       // router.push(redirectTo)
-      
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Erro ao criar conta'
       setErrors({ submit: errorMessage })
@@ -107,7 +106,7 @@ export default function RegisterForm({
             id="name"
             type="text"
             value={formData.name}
-            onChange={(e) => handleChange('name', e.target.value)}
+            onChange={e => handleChange('name', e.target.value)}
             className={`
               w-full px-4 py-3 rounded-lg
               bg-white/5 border ${errors.name ? 'border-red-500/50' : 'border-white/10'}
@@ -120,9 +119,7 @@ export default function RegisterForm({
             autoComplete="name"
             required
           />
-          {errors.name && (
-            <p className="mt-2 text-sm text-red-400">{errors.name}</p>
-          )}
+          {errors.name && <p className="mt-2 text-sm text-red-400">{errors.name}</p>}
         </div>
 
         {/* Email */}
@@ -134,7 +131,7 @@ export default function RegisterForm({
             id="email"
             type="email"
             value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
+            onChange={e => handleChange('email', e.target.value)}
             className={`
               w-full px-4 py-3 rounded-lg
               bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'}
@@ -147,9 +144,7 @@ export default function RegisterForm({
             autoComplete="email"
             required
           />
-          {errors.email && (
-            <p className="mt-2 text-sm text-red-400">{errors.email}</p>
-          )}
+          {errors.email && <p className="mt-2 text-sm text-red-400">{errors.email}</p>}
         </div>
 
         {/* Grid para CPF e Telefone */}
@@ -163,7 +158,7 @@ export default function RegisterForm({
               id="cpf"
               type="text"
               value={formData.cpf}
-              onChange={(e) => handleChange('cpf', e.target.value)}
+              onChange={e => handleChange('cpf', e.target.value)}
               className={`
                 w-full px-4 py-3 rounded-lg
                 bg-white/5 border ${errors.cpf ? 'border-red-500/50' : 'border-white/10'}
@@ -177,9 +172,7 @@ export default function RegisterForm({
               maxLength={14}
               required={requireCPF}
             />
-            {errors.cpf && (
-              <p className="mt-2 text-sm text-red-400">{errors.cpf}</p>
-            )}
+            {errors.cpf && <p className="mt-2 text-sm text-red-400">{errors.cpf}</p>}
           </div>
 
           {/* Telefone com Seletor de País */}
@@ -209,7 +202,7 @@ export default function RegisterForm({
               id="password"
               type={showPassword ? 'text' : 'password'}
               value={formData.password}
-              onChange={(e) => handleChange('password', e.target.value)}
+              onChange={e => handleChange('password', e.target.value)}
               className={`
                 w-full px-4 py-3 rounded-lg
                 bg-white/5 border ${errors.password ? 'border-red-500/50' : 'border-white/10'}
@@ -232,12 +225,10 @@ export default function RegisterForm({
               <Icon name={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden="true" />
             </button>
           </div>
-          {errors.password && (
-            <p className="mt-2 text-sm text-red-400">{errors.password}</p>
-          )}
-          
+          {errors.password && <p className="mt-2 text-sm text-red-400">{errors.password}</p>}
+
           {/* Indicador de força */}
-          <PasswordStrength 
+          <PasswordStrength
             password={formData.password}
             showFeedback={true}
             showScore={true}
@@ -255,7 +246,7 @@ export default function RegisterForm({
               id="confirmPassword"
               type={showConfirmPassword ? 'text' : 'password'}
               value={formData.confirmPassword}
-              onChange={(e) => handleChange('confirmPassword', e.target.value)}
+              onChange={e => handleChange('confirmPassword', e.target.value)}
               className={`
                 w-full px-4 py-3 rounded-lg
                 bg-white/5 border ${errors.confirmPassword ? 'border-red-500/50' : 'border-white/10'}
@@ -275,7 +266,10 @@ export default function RegisterForm({
               className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300 transition-colors"
               tabIndex={-1}
             >
-              <Icon name={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden="true" />
+              <Icon
+                name={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}
+                aria-hidden="true"
+              />
             </button>
           </div>
           {errors.confirmPassword && (
@@ -290,7 +284,7 @@ export default function RegisterForm({
               id="acceptTerms"
               type="checkbox"
               checked={formData.acceptTerms}
-              onChange={(e) => handleChange('acceptTerms', e.target.checked)}
+              onChange={e => handleChange('acceptTerms', e.target.checked)}
               className="w-4 h-4 mt-1 rounded border-white/10 bg-white/5 text-blue-500 focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -302,20 +296,18 @@ export default function RegisterForm({
               e a{' '}
               <a href="/privacidade" target="_blank" className="text-blue-400 hover:text-blue-300">
                 Política de Privacidade
-              </a>
-              {' '} *
+              </a>{' '}
+              *
             </label>
           </div>
-          {errors.acceptTerms && (
-            <p className="ml-7 text-sm text-red-400">{errors.acceptTerms}</p>
-          )}
+          {errors.acceptTerms && <p className="ml-7 text-sm text-red-400">{errors.acceptTerms}</p>}
 
           <div className="flex items-start">
             <input
               id="marketingConsent"
               type="checkbox"
               checked={formData.marketingConsent}
-              onChange={(e) => handleChange('marketingConsent', e.target.checked)}
+              onChange={e => handleChange('marketingConsent', e.target.checked)}
               className="w-4 h-4 mt-1 rounded border-white/10 bg-white/5 text-blue-500 focus:ring-2 focus:ring-blue-500"
             />
             <label htmlFor="marketingConsent" className="ml-3 text-sm text-gray-400">
@@ -327,9 +319,7 @@ export default function RegisterForm({
         {/* Erro geral */}
         {errors.submit && (
           <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/30">
-            <p className="text-sm text-red-400">
-              {errors.submit}
-            </p>
+            <p className="text-sm text-red-400">{errors.submit}</p>
           </div>
         )}
 
@@ -375,9 +365,7 @@ export default function RegisterForm({
           </div>
 
           <div className="mt-6">
-            <OAuthButtons 
-              mode="register"
-            />
+            <OAuthButtons mode="register" />
           </div>
         </div>
       )}
@@ -399,4 +387,3 @@ export default function RegisterForm({
     </>
   )
 }
-

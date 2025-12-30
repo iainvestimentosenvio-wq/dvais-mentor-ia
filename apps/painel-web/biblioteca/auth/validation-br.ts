@@ -1,15 +1,19 @@
 /**
  * Validações Brasileiras (CPF, CNPJ, Telefone)
- * 
+ *
  * IMPORTANTE: Estas validações são APENAS para UX (feedback rápido).
  * SEMPRE validar novamente no server-side.
- * 
+ *
  * Este módulo importa libphonenumber-js (~200KB), então só deve ser usado
  * quando necessário (ex: página de cadastro com telefone).
  */
 
 import { z } from 'zod'
-import { isValidPhoneNumber, parsePhoneNumber, formatIncompletePhoneNumber } from 'libphonenumber-js'
+import {
+  isValidPhoneNumber,
+  parsePhoneNumber,
+  formatIncompletePhoneNumber,
+} from 'libphonenumber-js'
 
 // ============================================
 // SCHEMAS ZOD
@@ -21,10 +25,7 @@ import { isValidPhoneNumber, parsePhoneNumber, formatIncompletePhoneNumber } fro
 export const cpfSchema = z
   .string()
   .optional()
-  .refine(
-    (cpf) => !cpf || isValidCPF(cpf),
-    'CPF inválido'
-  )
+  .refine(cpf => !cpf || isValidCPF(cpf), 'CPF inválido')
 
 /**
  * Schema de validação para CNPJ
@@ -32,10 +33,7 @@ export const cpfSchema = z
 export const cnpjSchema = z
   .string()
   .optional()
-  .refine(
-    (cnpj) => !cnpj || isValidCNPJ(cnpj),
-    'CNPJ inválido'
-  )
+  .refine(cnpj => !cnpj || isValidCNPJ(cnpj), 'CNPJ inválido')
 
 /**
  * Schema de validação para telefone internacional
@@ -44,19 +42,16 @@ export const cnpjSchema = z
 export const phoneSchema = z
   .string()
   .optional()
-  .refine(
-    (phone) => {
-      if (!phone) return true // Opcional
-      try {
-        // Usar libphonenumber-js para validação internacional
-        return isValidPhoneNumber(phone)
-      } catch {
-        // Fallback para validação básica se a biblioteca não estiver disponível
-        return /^\+?[1-9]\d{1,14}$/.test(phone.replace(/\s/g, ''))
-      }
-    },
-    'Telefone inválido. Verifique o número e o código do país.'
-  )
+  .refine(phone => {
+    if (!phone) return true // Opcional
+    try {
+      // Usar libphonenumber-js para validação internacional
+      return isValidPhoneNumber(phone)
+    } catch {
+      // Fallback para validação básica se a biblioteca não estiver disponível
+      return /^\+?[1-9]\d{1,14}$/.test(phone.replace(/\s/g, ''))
+    }
+  }, 'Telefone inválido. Verifique o número e o código do país.')
 
 // ============================================
 // FUNÇÕES DE VALIDAÇÃO
@@ -68,17 +63,17 @@ export const phoneSchema = z
 export function isValidCPF(cpf: string): boolean {
   // Remover caracteres não numéricos
   const cleanCPF = cpf.replace(/[^\d]/g, '')
-  
+
   // Verificar se tem 11 dígitos
   if (cleanCPF.length !== 11) return false
-  
+
   // Verificar se todos os dígitos são iguais (inválido)
   if (/^(\d)\1+$/.test(cleanCPF)) return false
-  
+
   // Validar dígitos verificadores
   let sum = 0
   let remainder
-  
+
   // Primeiro dígito verificador
   for (let i = 1; i <= 9; i++) {
     sum += parseInt(cleanCPF.substring(i - 1, i)) * (11 - i)
@@ -86,7 +81,7 @@ export function isValidCPF(cpf: string): boolean {
   remainder = (sum * 10) % 11
   if (remainder === 10 || remainder === 11) remainder = 0
   if (remainder !== parseInt(cleanCPF.substring(9, 10))) return false
-  
+
   // Segundo dígito verificador
   sum = 0
   for (let i = 1; i <= 10; i++) {
@@ -95,7 +90,7 @@ export function isValidCPF(cpf: string): boolean {
   remainder = (sum * 10) % 11
   if (remainder === 10 || remainder === 11) remainder = 0
   if (remainder !== parseInt(cleanCPF.substring(10, 11))) return false
-  
+
   return true
 }
 
@@ -105,20 +100,20 @@ export function isValidCPF(cpf: string): boolean {
 export function isValidCNPJ(cnpj: string): boolean {
   // Remover caracteres não numéricos
   const cleanCNPJ = cnpj.replace(/[^\d]/g, '')
-  
+
   // Verificar se tem 14 dígitos
   if (cleanCNPJ.length !== 14) return false
-  
+
   // Verificar se todos os dígitos são iguais (inválido)
   if (/^(\d)\1+$/.test(cleanCNPJ)) return false
-  
+
   // Validar dígitos verificadores
   let size = cleanCNPJ.length - 2
   let numbers = cleanCNPJ.substring(0, size)
   const digits = cleanCNPJ.substring(size)
   let sum = 0
   let pos = size - 7
-  
+
   // Primeiro dígito verificador
   for (let i = size; i >= 1; i--) {
     sum += parseInt(numbers.charAt(size - i)) * pos--
@@ -126,20 +121,20 @@ export function isValidCNPJ(cnpj: string): boolean {
   }
   let result = sum % 11 < 2 ? 0 : 11 - (sum % 11)
   if (result !== parseInt(digits.charAt(0))) return false
-  
+
   // Segundo dígito verificador
   size = size + 1
   numbers = cleanCNPJ.substring(0, size)
   sum = 0
   pos = size - 7
-  
+
   for (let i = size; i >= 1; i--) {
     sum += parseInt(numbers.charAt(size - i)) * pos--
     if (pos < 2) pos = 9
   }
   result = sum % 11 < 2 ? 0 : 11 - (sum % 11)
   if (result !== parseInt(digits.charAt(1))) return false
-  
+
   return true
 }
 
@@ -149,7 +144,7 @@ export function isValidCNPJ(cnpj: string): boolean {
  */
 export function isValidPhone(phone: string): boolean {
   if (!phone) return false
-  
+
   try {
     // Usar libphonenumber-js para validação internacional
     return isValidPhoneNumber(phone)
@@ -167,17 +162,17 @@ export function isValidPhone(phone: string): boolean {
 export function isValidBrazilianPhone(phone: string): boolean {
   // Remover caracteres não numéricos
   const cleanPhone = phone.replace(/[^\d]/g, '')
-  
+
   // Verificar se tem 10 ou 11 dígitos (com ou sem 9 no celular)
   if (cleanPhone.length !== 10 && cleanPhone.length !== 11) return false
-  
+
   // Verificar DDD válido (11-99, exceto alguns)
   const ddd = parseInt(cleanPhone.substring(0, 2))
   if (ddd < 11 || ddd > 99) return false
-  
+
   // Verificar se não é tudo igual
   if (/^(\d)\1+$/.test(cleanPhone)) return false
-  
+
   return true
 }
 
@@ -203,7 +198,7 @@ export function formatCNPJ(cnpj: string): string {
  */
 export function formatPhone(phone: string): string {
   if (!phone) return ''
-  
+
   try {
     const phoneNumber = parsePhoneNumber(phone)
     if (phoneNumber && phoneNumber.isValid()) {
@@ -222,7 +217,7 @@ export function formatPhone(phone: string): string {
  */
 export function formatBrazilianPhone(phone: string): string {
   const clean = phone.replace(/[^\d]/g, '')
-  
+
   if (clean.length === 11) {
     // Celular: (11) 98765-4321
     return clean.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
@@ -230,7 +225,7 @@ export function formatBrazilianPhone(phone: string): string {
     // Fixo: (11) 3456-7890
     return clean.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3')
   }
-  
+
   return phone
 }
 
@@ -245,19 +240,19 @@ export function validateCPF(cpf: string): {
   if (!cpf || cpf.trim() === '') {
     return { isValid: true } // CPF é opcional
   }
-  
+
   const isValid = isValidCPF(cpf)
-  
+
   if (!isValid) {
     return {
       isValid: false,
-      error: 'CPF inválido'
+      error: 'CPF inválido',
     }
   }
-  
+
   return {
     isValid: true,
-    formatted: formatCPF(cpf)
+    formatted: formatCPF(cpf),
   }
 }
 
@@ -272,19 +267,19 @@ export function validateCNPJ(cnpj: string): {
   if (!cnpj || cnpj.trim() === '') {
     return { isValid: true } // CNPJ é opcional
   }
-  
+
   const isValid = isValidCNPJ(cnpj)
-  
+
   if (!isValid) {
     return {
       isValid: false,
-      error: 'CNPJ inválido'
+      error: 'CNPJ inválido',
     }
   }
-  
+
   return {
     isValid: true,
-    formatted: formatCNPJ(cnpj)
+    formatted: formatCNPJ(cnpj),
   }
 }
 
@@ -299,19 +294,19 @@ export function validatePhone(phone: string): {
   if (!phone || phone.trim() === '') {
     return { isValid: true } // Telefone é opcional
   }
-  
+
   const isValid = isValidPhone(phone)
-  
+
   if (!isValid) {
     return {
       isValid: false,
-      error: 'Telefone inválido. Use o formato: (11) 98765-4321'
+      error: 'Telefone inválido. Use o formato: (11) 98765-4321',
     }
   }
-  
+
   return {
     isValid: true,
-    formatted: formatPhone(phone)
+    formatted: formatPhone(phone),
   }
 }
 
@@ -325,11 +320,12 @@ export function validatePhone(phone: string): {
 export function maskCPF(value: string): string {
   const clean = value.replace(/\D/g, '')
   const limited = clean.slice(0, 11)
-  
+
   if (limited.length <= 3) return limited
   if (limited.length <= 6) return `${limited.slice(0, 3)}.${limited.slice(3)}`
-  if (limited.length <= 9) return `${limited.slice(0, 3)}.${limited.slice(3, 6)}.${limited.slice(6)}`
-  
+  if (limited.length <= 9)
+    return `${limited.slice(0, 3)}.${limited.slice(3, 6)}.${limited.slice(6)}`
+
   return `${limited.slice(0, 3)}.${limited.slice(3, 6)}.${limited.slice(6, 9)}-${limited.slice(9)}`
 }
 
@@ -339,12 +335,14 @@ export function maskCPF(value: string): string {
 export function maskCNPJ(value: string): string {
   const clean = value.replace(/\D/g, '')
   const limited = clean.slice(0, 14)
-  
+
   if (limited.length <= 2) return limited
   if (limited.length <= 5) return `${limited.slice(0, 2)}.${limited.slice(2)}`
-  if (limited.length <= 8) return `${limited.slice(0, 2)}.${limited.slice(2, 5)}.${limited.slice(5)}`
-  if (limited.length <= 12) return `${limited.slice(0, 2)}.${limited.slice(2, 5)}.${limited.slice(5, 8)}/${limited.slice(8)}`
-  
+  if (limited.length <= 8)
+    return `${limited.slice(0, 2)}.${limited.slice(2, 5)}.${limited.slice(5)}`
+  if (limited.length <= 12)
+    return `${limited.slice(0, 2)}.${limited.slice(2, 5)}.${limited.slice(5, 8)}/${limited.slice(8)}`
+
   return `${limited.slice(0, 2)}.${limited.slice(2, 5)}.${limited.slice(5, 8)}/${limited.slice(8, 12)}-${limited.slice(12)}`
 }
 
@@ -358,11 +356,11 @@ export function maskPhone(value: string): string {
   if (value.startsWith('+')) {
     return value
   }
-  
+
   // Caso contrário, aplicar máscara brasileira
   const clean = value.replace(/\D/g, '')
   const limited = clean.slice(0, 11)
-  
+
   if (limited.length <= 2) return limited
   if (limited.length <= 6) {
     // (11) 3456
@@ -372,7 +370,7 @@ export function maskPhone(value: string): string {
     // (11) 3456-7890
     return `(${limited.slice(0, 2)}) ${limited.slice(2, 6)}-${limited.slice(6)}`
   }
-  
+
   // (11) 98765-4321
   return `(${limited.slice(0, 2)}) ${limited.slice(2, 7)}-${limited.slice(7)}`
 }
@@ -390,7 +388,7 @@ export const VALIDATION_RULES = {
   },
   CNPJ: {
     LENGTH: 14,
-  }
+  },
 } as const
 
 export const ERROR_MESSAGES = {

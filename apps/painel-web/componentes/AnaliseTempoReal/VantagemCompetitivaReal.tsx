@@ -30,9 +30,11 @@ export default function VantagemCompetitivaReal() {
           </span>
         </h3>
         <p className="text-lg text-gray-300 mb-6">
-          A maioria dos investidores leva <span className="text-purple-400 font-bold">anos</span> para desenvolver esse nível de conhecimento.
+          A maioria dos investidores leva <span className="text-purple-400 font-bold">anos</span>{' '}
+          para desenvolver esse nível de conhecimento.
           <br />
-          Com o Mentor IA, você tem tudo isso <span className="text-cyan-400 font-bold">agora</span>.
+          Com o Mentor IA, você tem tudo isso <span className="text-cyan-400 font-bold">agora</span>
+          .
         </p>
         <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
           <Icon name="fas fa-check-circle" className="text-green-400" />
@@ -48,4 +50,3 @@ export default function VantagemCompetitivaReal() {
     </section>
   )
 }
-

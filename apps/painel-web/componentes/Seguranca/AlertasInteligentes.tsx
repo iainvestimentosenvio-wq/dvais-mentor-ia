@@ -34,21 +34,31 @@ export default function AlertasInteligentes() {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-6">
-            Alertas são uma camada de segurança: reduzem erro operacional e ajudam a manter consistência — sem prometer resultados.
+            Alertas são uma camada de segurança: reduzem erro operacional e ajudam a manter
+            consistência — sem prometer resultados.
           </p>
           <div className="max-w-4xl mx-auto">
             <div className="glass-intense border border-cyan-400/20 rounded-xl p-6 bg-gradient-to-br from-cyan-500/5 to-blue-500/5">
               <p className="text-base text-gray-300 leading-relaxed text-center">
-                <Icon name="fas fa-info-circle" className="text-cyan-400 mr-2 inline" aria-hidden="true" />
-                <span className="text-white font-semibold">Para alertas mais precisos e personalizados</span>, recomendamos ativar o{' '}
-                <span className="text-cyan-400 font-semibold">Guia Financeiro</span>, que permite conhecer sua realidade econômica e sugerir quando avançar ou pausar investimentos, garantindo decisões mais seguras e alinhadas ao seu momento financeiro.
+                <Icon
+                  name="fas fa-info-circle"
+                  className="text-cyan-400 mr-2 inline"
+                  aria-hidden="true"
+                />
+                <span className="text-white font-semibold">
+                  Para alertas mais precisos e personalizados
+                </span>
+                , recomendamos ativar o{' '}
+                <span className="text-cyan-400 font-semibold">Guia Financeiro</span>, que permite
+                conhecer sua realidade econômica e sugerir quando avançar ou pausar investimentos,
+                garantindo decisões mais seguras e alinhadas ao seu momento financeiro.
               </p>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {exemplos.map((item) => (
+          {exemplos.map(item => (
             <div
               key={item.title}
               className="group relative glass-intense border border-blue-400/20 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-400/40 hover:shadow-blue-500/20 card-glow-hover"
@@ -66,9 +76,13 @@ export default function AlertasInteligentes() {
                 </div>
 
                 <ul className="space-y-2 pt-2 border-t border-blue-400/20">
-                  {item.bullets.map((b) => (
+                  {item.bullets.map(b => (
                     <li key={b} className="flex items-start gap-3 text-sm text-gray-300">
-                      <Icon name="fas fa-check" className="text-cyan-400 mt-0.5" aria-hidden="true" />
+                      <Icon
+                        name="fas fa-check"
+                        className="text-cyan-400 mt-0.5"
+                        aria-hidden="true"
+                      />
                       <span>{b}</span>
                     </li>
                   ))}
@@ -81,6 +95,3 @@ export default function AlertasInteligentes() {
     </section>
   )
 }
-
-
-

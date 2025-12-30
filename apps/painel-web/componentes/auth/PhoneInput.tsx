@@ -5,7 +5,7 @@ import Icon from '../Icon'
 import PhoneInputWithCountry, {
   type Country,
   getCountries,
-  getCountryCallingCode
+  getCountryCallingCode,
 } from 'react-phone-number-input'
 import { isValidPhoneNumber, parsePhoneNumber } from 'libphonenumber-js'
 import 'react-phone-number-input/style.css'
@@ -41,11 +41,12 @@ export default function PhoneInput({
         className={`
           relative flex items-center
           rounded-lg transition-all duration-300
-          ${error 
-            ? 'border-red-500/50 bg-red-500/5' 
-            : isFocused 
-              ? 'border-blue-500 bg-white/10' 
-              : 'border-white/10 bg-white/5'
+          ${
+            error
+              ? 'border-red-500/50 bg-red-500/5'
+              : isFocused
+                ? 'border-blue-500 bg-white/10'
+                : 'border-white/10 bg-white/5'
           }
           ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
           border
@@ -59,7 +60,7 @@ export default function PhoneInput({
           international
           defaultCountry={defaultCountry}
           value={value}
-          onChange={onChange ? (val) => onChange(val || undefined) : () => {}}
+          onChange={onChange ? val => onChange(val || undefined) : () => {}}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
@@ -76,11 +77,11 @@ export default function PhoneInput({
             autoComplete: 'tel',
             'aria-label': 'Número de telefone',
             'aria-required': required,
-            'aria-invalid': error ? 'true' : 'false'
+            'aria-invalid': error ? 'true' : 'false',
           }}
           countrySelectProps={{
             className: 'phone-input-country-select',
-            'aria-label': 'Selecionar país'
+            'aria-label': 'Selecionar país',
           }}
           {...props}
         />

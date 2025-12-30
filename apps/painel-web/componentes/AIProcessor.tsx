@@ -1,31 +1,31 @@
 /**
  * AIProcessor Component
- * 
+ *
  * Componente de demonstração do processamento de IA
  * - Indicador visual discreto de status da IA
  * - Performance em tempo real
  * - Design minimalista e moderno
- * 
+ *
  * Funcionalidades:
  * - LED indicador com estados visuais (Ativa/Standby/Offline/Inicializando)
  * - Auto-inicialização do backend WASM + SIMD
  * - Exibição de informações de performance (20-400x mais rápido)
  * - Feedback visual em tempo real
- * 
+ *
  * Estados do LED:
  * - 🔵 Azul pulsante: IA Ativa (WASM + SIMD funcionando)
  * - 🟡 Amarelo: Inicializando IA...
  * - ⚫ Cinza: IA Standby (não inicializada)
  * - 🔴 Vermelho: IA Offline (erro)
- * 
+ *
  * Performance:
  * - Client Component (usa hooks)
  * - Auto-inicializa backend quando monta (se autoInitialize = true)
  * - Não bloqueia renderização (lazy loading do backend)
- * 
+ *
  * @param {boolean} autoInitialize - Se true, inicializa backend automaticamente ao montar
  * @param {boolean} showPerformanceInfo - Se true, exibe informações de performance
- * 
+ *
  * @returns {JSX.Element} Indicador visual de status da IA
  */
 
@@ -44,20 +44,20 @@ export interface AIProcessorProps {
   showPerformanceInfo?: boolean
 }
 
-export default function AIProcessor({ 
+export default function AIProcessor({
   autoInitialize = true,
-  showPerformanceInfo = true 
+  showPerformanceInfo = true,
 }: AIProcessorProps) {
   const { isReady, isInitializing, error, initialize, getPerformanceInfo } = useAI()
 
   /**
    * Auto-inicialização do backend de IA
-   * 
+   *
    * Comportamento:
    * - Inicializa backend WASM + SIMD automaticamente ao montar
    * - Só inicializa se autoInitialize = true
    * - Evita inicializações duplicadas (verifica isReady e isInitializing)
-   * 
+   *
    * Performance:
    * - Lazy loading: backend só carrega quando necessário
    * - Não bloqueia renderização inicial
@@ -70,7 +70,7 @@ export default function AIProcessor({
 
   /**
    * Informações de performance do backend
-   * 
+   *
    * Contém:
    * - Backend ativo (wasm/cpu)
    * - SIMD habilitado (true/false)
@@ -88,26 +88,30 @@ export default function AIProcessor({
           {isReady && (
             <div className="absolute w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-75"></div>
           )}
-          
+
           {/* LED principal */}
-          <div className={`
+          <div
+            className={`
             relative w-3 h-3 rounded-full border-2 transition-all duration-300
             ${isReady ? 'bg-blue-400 border-blue-300 shadow-lg shadow-blue-400/50' : ''}
             ${isInitializing ? 'bg-yellow-400 border-yellow-300 shadow-lg shadow-yellow-400/50 animate-pulse' : ''}
             ${error ? 'bg-red-400 border-red-300' : ''}
             ${!isReady && !isInitializing && !error ? 'bg-gray-600 border-gray-500' : ''}
-          `}></div>
+          `}
+          ></div>
         </div>
 
         {/* Status Text */}
         <div className="flex flex-col">
-          <span className={`
+          <span
+            className={`
             text-sm font-semibold transition-colors duration-300
             ${isReady ? 'text-blue-300' : ''}
             ${isInitializing ? 'text-yellow-300' : ''}
             ${error ? 'text-red-300' : ''}
             ${!isReady && !isInitializing && !error ? 'text-gray-400' : ''}
-          `}>
+          `}
+          >
             {isReady && 'IA Ativa'}
             {isInitializing && 'Inicializando IA...'}
             {error && 'IA Offline'}
@@ -125,12 +129,7 @@ export default function AIProcessor({
       </div>
 
       {/* Error Message (if any) */}
-      {error && (
-        <div className="mt-2 text-xs text-red-300/80">
-          {error}
-        </div>
-      )}
+      {error && <div className="mt-2 text-xs text-red-300/80">{error}</div>}
     </div>
   )
 }
-
