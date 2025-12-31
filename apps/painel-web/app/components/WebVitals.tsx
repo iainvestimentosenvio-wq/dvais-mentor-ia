@@ -38,10 +38,9 @@ export default function WebVitals() {
     }
 
     import('web-vitals')
-      .then(({ onCLS, onFCP, onFID, onINP, onLCP, onTTFB }) => {
+      .then(({ onCLS, onFCP, onINP, onLCP, onTTFB }) => {
         onCLS(sendMetric)
         onFCP(sendMetric)
-        onFID(sendMetric)
         onINP(sendMetric)
         onLCP(sendMetric)
         onTTFB(sendMetric)
